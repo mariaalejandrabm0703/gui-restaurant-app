@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormCrearProducto test should match snapshot 1`] = `
+<div>
+  <form>
+    <h2>
+      Form test
+    </h2>
+    <input
+      class="sc-AxirZ eAukyj"
+      name="title"
+      placeholder="Title"
+      value=""
+    />
+    <input
+      class="sc-AxirZ eAukyj"
+      name="slug"
+      placeholder="Slug"
+      value=""
+    />
+    <input
+      class="sc-AxirZ eAukyj"
+      name="body"
+      placeholder="Body"
+      value=""
+    />
+    <button
+      class="sc-AxjAm kgxTKy"
+      type="submit"
+    >
+      Registrar
+    </button>
+  </form>
+</div>
+`;

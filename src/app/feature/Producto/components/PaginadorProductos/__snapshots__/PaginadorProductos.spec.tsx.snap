@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginadorProductos Test should match snapshot 1`] = `
+<nav>
+  <button
+    key="0"
+    onClick={[Function]}
+  >
+    1
+  </button>
+  <button
+    key="1"
+    onClick={[Function]}
+  >
+    2
+  </button>
+</nav>
+`;
