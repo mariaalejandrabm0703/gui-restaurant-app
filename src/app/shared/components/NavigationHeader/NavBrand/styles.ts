@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const BrandDiv = styled.div`
-  margin: 5px;
+  margin: 10px;
 `;
 
 export const LogoImg = styled.img`
-  max-height: 50px;
-  max-width: 150px;
+  max-height: 100px;
+  max-width: 200px;
 `;
 
 export const LogoSpan = styled.span`
