@@ -11,7 +11,7 @@ interface NavItemProps {
 export const NavItem: React.FC<NavItemProps> = ({ label, to }) => (
   <NavItemDiv>
     <Link to={to} replace={true}>
-      {label}
+      {label === 'Carrito' ? <i className="fas fa-shopping-cart"></i>: label }
     </Link>
   </NavItemDiv>
 );

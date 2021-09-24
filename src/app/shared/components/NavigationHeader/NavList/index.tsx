@@ -9,7 +9,7 @@ interface NavListProps {
 
 export const NavList: React.FC<NavListProps> = ({ items }) => {
   return (
-    <NavListUl>
+    <NavListUl> 
       {items.map(({ label, url }) => (
         <li key={label}>
           <NavItem label={label} to={url} />
