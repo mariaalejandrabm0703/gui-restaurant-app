@@ -6,19 +6,19 @@ export interface IProduct {
   /**
    * Descripción del producto
    */
-  description: string;
+  descripcion: string;
   /**
    * Categoría del producto
    */
-  category: string;
+  categoria: string;
   /**
    * Precio del producto
    */
-  price: number;
+  precio: number;
   /**
    * Estado del producto
    */
-  active: string;
+  activo: string;
   /**
    * Imagen del producto
    */
@@ -32,19 +32,19 @@ export interface IRanking {
   /**
    * Descripción del producto
    */
-  description: string;
+  descripcion: string;
   /**
    * Categoría del producto
    */
-  category: string;
+  categoria: string;
   /**
    * Precio del producto
    */
-  price: number;
+  precio: number;
   /**
    * Estado del producto
    */
-  active: string;
+  activo: string;
   /**
    * Imagen del producto
    */
@@ -52,5 +52,5 @@ export interface IRanking {
   /**
    * Cantidad vendida del producto
    */
-  quantity: number;
+  cantidad: number;
 }

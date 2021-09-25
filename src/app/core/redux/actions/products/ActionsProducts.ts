@@ -44,9 +44,10 @@ export function setProductsAsync() {
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        return dispacth(setProducts(response.data.pedidosProductos));
+        return dispacth(setProducts(response.data));
       })
       .catch((err) => {
+        console.log(err);
         dispacth(isLoading(false));
         dispacth(
           setError({

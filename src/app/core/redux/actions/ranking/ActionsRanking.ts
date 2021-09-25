@@ -1,8 +1,8 @@
 import {
   DEFAULT_STATE,
-  IActionTypesProducts,
+  IActionTypesRanking,
   SET_PRODUCTS
-} from '../products/ActionTypesProducts';
+} from '../ranking/ActionTypesRanking';
 import { ERROR, IActionTypesMain, IS_LOADING } from '../main/ActionTypesMain';
 import { IErrorToast } from '../../modelo/IStateMain';
 import { IRanking } from '../../../../feature/Home/models/Home';
@@ -10,14 +10,14 @@ import { RankingRepository } from '../../../api/ranking.repository';
 
 const errorDefault = { message: '', type: '' };
 
-export function defaultState(prods:  Array<IRanking>): IActionTypesProducts {
+export function defaultState(prods:  Array<IRanking>): IActionTypesRanking {
   return {
     type: DEFAULT_STATE,
     payload: prods,
   };
 }
 
-export function setProducts(products: Array<IRanking>): IActionTypesProducts {
+export function setProducts(products: Array<IRanking>): IActionTypesRanking {
   return {
     type: SET_PRODUCTS,
     payload: products,
@@ -38,14 +38,14 @@ export function setError(error: IErrorToast): IActionTypesMain {
   };
 }
 
-export function setProductsAsync(id: number) {
+export function setProductsRanAsync() {
   return async function (dispacth: any) {
     dispacth(isLoading(true));
     await RankingRepository.getProductsRanking()
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        return dispacth(setProducts(response.data.pedidosProductos));
+        return dispacth(setProducts(response.data));
       })
       .catch((err) => {
         dispacth(isLoading(false));

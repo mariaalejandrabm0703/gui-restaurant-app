@@ -1,5 +1,6 @@
 import { IStateCart } from './IStateCart';
 import { IStateMain } from './IStateMain';
+import { IStateOrder } from './IStateOrder';
 import { IStateProducts } from './IStateProducts';
 import { IStateRanking } from './IStateRanking';
 
@@ -8,4 +9,5 @@ export interface Istate {
   ranking: IStateRanking;
   cart: IStateCart;
   main: IStateMain;
+  order: IStateOrder;
 }

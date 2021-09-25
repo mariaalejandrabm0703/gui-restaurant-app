@@ -1,10 +1,8 @@
-
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { IProduct, IRanking } from '../../models/Home';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
 import ToastError from '../../../../shared/components/ToastError';
-
 
 interface HomeProps {
   listProducts: Array<IProduct>;
@@ -12,7 +10,8 @@ interface HomeProps {
   listProductsCart: Array<IProduct>;
   isLoading: boolean;
   errorMessage: IErrorToast;
-  setProductsAsync: () => void;
+  getAllProducts: () => void;
+  getProductsRanking: () => void;
 }
 
 export const Home: React.FC<HomeProps> = ({
@@ -21,13 +20,27 @@ export const Home: React.FC<HomeProps> = ({
     listProductsCart,
     isLoading,
     errorMessage,
-    setProductsAsync
+    getAllProducts,
+    getProductsRanking
 }) => {
-  
+  React.useEffect(() => {
+    if (listProducts && listProducts.length === 0 && errorMessage.message === '') {
+      getAllProducts();
+    }
+
+  }, [listProducts, getAllProducts, errorMessage]);
+ 
+  React.useEffect(() => {
+    if (listRanking && listRanking.length === 0 && errorMessage.message === '') {
+      getProductsRanking();
+    }
+  }, [listRanking, getProductsRanking]);
   return (
     <>
       <ToastError />
       <h1>Hola2</h1>
+      <p>{listProducts.length}</p>
+      <p>{listRanking.length}</p>
     </>
   );
 };
@@ -37,7 +50,8 @@ Home.propTypes = {
     listRanking: PropTypes.array.isRequired,
     listProductsCart: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    setProductsAsync: PropTypes.func.isRequired,
+    getAllProducts: PropTypes.func.isRequired,
+    getProductsRanking: PropTypes.func.isRequired,
     errorMessage: PropTypes.shape({
       message: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,

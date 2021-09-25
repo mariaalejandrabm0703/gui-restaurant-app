@@ -2,6 +2,7 @@ import { Home } from '../containers/Home';
 import { Istate } from 'app/core/redux/modelo/GeneralState';
 import { connect } from 'react-redux';
 import { setProductsAsync } from '../../../core/redux/actions/products/ActionsProducts';
+import { setProductsRanAsync } from 'app/core/redux/actions/ranking/ActionsRanking';
 
 const mapStateToProps = (state: Istate) => {
   return {
@@ -13,4 +14,7 @@ const mapStateToProps = (state: Istate) => {
   };
 };
 
-export const ManageHome = connect(mapStateToProps, {setProductsAsync})(Home);
+export const ManageHome = connect(mapStateToProps, {
+  getAllProducts: setProductsAsync,
+  getProductsRanking: setProductsRanAsync
+})(Home);
