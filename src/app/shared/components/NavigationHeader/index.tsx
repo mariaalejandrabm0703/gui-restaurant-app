@@ -6,10 +6,10 @@ import { NavList } from './NavList';
 
 export const NavigationHeader: React.FC = () => {
   const routes = [
-    { label: 'Home', url: '/home' },
-    { label: 'Mi pedido', url: '/productos' },
-    { label: 'Menú', url: '/home' },
-    { label: 'Carrito', url: '/home' },
+    { label: 'Home', url: '/' },
+    { label: 'Mi pedido', url: '/myOrder' },
+    { label: 'Menú', url: '/menu' },
+    { label: 'Carrito', url: '/cart' },
   ];
   return (
     <HeaderNav>

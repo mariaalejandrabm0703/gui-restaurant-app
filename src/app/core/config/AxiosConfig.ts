@@ -1,7 +1,1 @@
-import axios from 'axios';
-
-export const axiosIntance = axios.create({
-  baseURL: process.env.REACT_APP_URL_BASE,
-  timeout: 30000,
-  headers: { 'X-Custom-Header': 'foobar' },
-});
+export const baseUrl = 'http://localhost:3001/api/'; // process.env.REACT_APP_URL_BASE,

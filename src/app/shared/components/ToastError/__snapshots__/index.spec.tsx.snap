@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Compara snapshot del componente Loading en modo lista 1`] = `
+<div
+  data-testid="toast-error"
+>
+  <div
+    className="Toastify"
+  />
+</div>
+`;

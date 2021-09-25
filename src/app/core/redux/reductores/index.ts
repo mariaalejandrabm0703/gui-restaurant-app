@@ -1,4 +1,7 @@
+import cart from './cart/cartReducer';
 import { combineReducers } from 'redux';
-import productos from './productos/productosReductor';
+import main from './main/mainReducer';
+import products from './products/productsReducer';
+import ranking from './ranking/rankingReducer';
 
-export default combineReducers({ productos });
+export default combineReducers({ main, products, ranking, cart });
