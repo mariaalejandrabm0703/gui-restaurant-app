@@ -9,21 +9,20 @@ interface OrderProps {
   myOrder: IMyOrder;
   isLoading: boolean;
   errorMessage: IErrorToast;
+  setOrderAsync:(id: number) => void;
 }
 
 export const MyOrder: React.FC<OrderProps> = ({
   myOrder,
   isLoading,
    errorMessage,
+   setOrderAsync
 }) => {
-  React.useEffect(() => {
-  console.log(myOrder);
-  }, [myOrder]);
-
-
-  React.useEffect(() => {
-    setOrderAsync(1);
-    }, []);
+  // React.useEffect(() => {
+  //   if (myOrder && errorMessage.message === '') {
+  //     setOrderAsync(1);
+  //   }
+  // }, [myOrder]);
 
   return (
     <>
@@ -54,4 +53,5 @@ MyOrder.propTypes = {
       message: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
     }).isRequired,
+    setOrderAsync: PropTypes.func.isRequired,
   };

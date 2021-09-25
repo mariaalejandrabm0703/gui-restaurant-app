@@ -1,8 +1,8 @@
 import { IErrorToast } from '../../modelo/IStateMain';
 
-export const DEFAULT_STATE = 'DEFAULT_STATE';
-export const IS_LOADING = 'CARGANDO_RECURSO';
-export const ERROR = 'OBTENIENDO_ERROR';
+export const DEFAULT_STATE = '[MAIN] DEFAULT_STATE';
+export const IS_LOADING = '[MAIN] CARGANDO_RECURSO';
+export const ERROR = '[MAIN] OBTENIENDO_ERROR';
 
 interface IDefaultState {
   type: typeof DEFAULT_STATE;
