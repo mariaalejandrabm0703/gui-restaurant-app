@@ -24,6 +24,21 @@ export interface IProduct {
    */
   img: string;
 }
+
+export interface IProductOrder {
+  /**
+   * Identificador del producto
+   */
+  id: number;
+  /**
+   * Precio del producto
+   */
+  precio: number;
+  /**
+   * Cantidad del producto
+   */
+  cantidad: number;
+}
 export interface IRanking {
   /**
    * Identificador del producto

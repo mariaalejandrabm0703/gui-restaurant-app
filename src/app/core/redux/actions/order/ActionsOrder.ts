@@ -52,7 +52,6 @@ export function setOrderAsync(id: number) {
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        console.log(response.data);
         return dispacth(setOrder(response.data));
       })
       .catch((err) => {

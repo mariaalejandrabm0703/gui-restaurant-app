@@ -6,12 +6,12 @@ import {
   SET_PRODUCTS,
   SUBT_COUNT_PRODUCTS,
 } from '../../actions/cart/ActionTypesCart';
-import { IProduct } from '../../../../feature/Home/models/Home';
+import { IProductOrder } from '../../../../feature/Home/models/Home';
 import { IStateCart } from '../../modelo/IStateCart';
 
 const initialState: IStateCart = {
   count: 0,
-  listProductsCart: Array<IProduct>(),
+  listProductsCart: Array<IProductOrder>(),
 };
 
 export default function (

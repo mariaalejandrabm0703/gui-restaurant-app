@@ -10,7 +10,7 @@ import {
 import { ERROR, IActionTypesMain, IS_LOADING } from '../main/ActionTypesMain';
 import { CartRepository } from '../../../api/cart.repository';
 import { IErrorToast } from '../../modelo/IStateMain';
-import { IProduct } from '../../../../feature/Home/models/Home';
+import { IProductOrder } from '../../../../feature/Home/models/Home';
 const errorDefault = { message: '', type: '' };
 
 export function defaultState(id: number): IActionTypesCart {
@@ -20,7 +20,7 @@ export function defaultState(id: number): IActionTypesCart {
   };
 }
 
-export function setProducts(products: Array<IProduct>): IActionTypesCart {
+export function setProducts(products: Array<IProductOrder>): IActionTypesCart {
   return {
     type: SET_PRODUCTS,
     payload: products,

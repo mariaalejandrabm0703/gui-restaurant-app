@@ -1,13 +1,13 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IProduct, IRanking } from '../../models/Home';
+import { IProduct, IProductOrder, IRanking } from '../../models/Home';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
 import ToastError from '../../../../shared/components/ToastError';
 
 interface HomeProps {
   listProducts: Array<IProduct>;
   listRanking: Array<IRanking>;
-  listProductsCart: Array<IProduct>;
+  listProductsCart: Array<IProductOrder>;
   isLoading: boolean;
   errorMessage: IErrorToast;
   getAllProducts: () => void;

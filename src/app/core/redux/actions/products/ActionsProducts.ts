@@ -47,7 +47,6 @@ export function setProductsAsync() {
         return dispacth(setProducts(response.data));
       })
       .catch((err) => {
-        console.log(err);
         dispacth(isLoading(false));
         dispacth(
           setError({

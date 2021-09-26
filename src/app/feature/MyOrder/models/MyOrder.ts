@@ -1,4 +1,4 @@
-import { IProduct } from 'app/feature/Home/models/Home';
+import { IProductOrder } from 'app/feature/Home/models/Home';
 
 export interface IMyOrder {
   /**
@@ -20,7 +20,7 @@ export interface IMyOrder {
   /**
    * Productos
    */
-  pedidosProductos: IProduct[];
+  pedidosProductos: IProductOrder[];
   /**
    * cliente del pedido
    */

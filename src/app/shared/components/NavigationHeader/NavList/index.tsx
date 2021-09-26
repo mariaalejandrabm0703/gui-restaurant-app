@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { NavItem } from '../NavItem';
+import { ManageNavItem } from '../NavItem';
 import { NavListUl } from './styles';
 
 interface NavListProps {
@@ -12,7 +12,7 @@ export const NavList: React.FC<NavListProps> = ({ items }) => {
     <NavListUl> 
       {items.map(({ label, url }) => (
         <li key={label}>
-          <NavItem label={label} to={url} />
+          <ManageNavItem label={label} to={url} />
         </li>
       ))}
     </NavListUl>
