@@ -1,7 +1,9 @@
 import {
   ADD_COUNT_PRODUCTS,
+  DELETE_CLIENT,
   DELETE_COUNT_PRODUCTS,
   IActionTypesCart,
+  SET_CLIENT,
   SET_COUNT_PRODUCTS,
   SET_PRODUCTS,
   SUBT_COUNT_PRODUCTS,
@@ -12,6 +14,14 @@ import { IStateCart } from '../../modelo/IStateCart';
 const initialState: IStateCart = {
   count: 0,
   listProductsCart: Array<IProductOrder>(),
+  client: {
+    id: 0,
+    nombre: '',
+    identificacion: '',
+    telefono: '',
+    email: '',
+    activo: '',
+  },
 };
 
 export default function (
@@ -19,11 +29,11 @@ export default function (
   action: IActionTypesCart
 ): IStateCart {
   switch (action.type) {
-    case SET_PRODUCTS:{
+    case SET_PRODUCTS: {
       const prods = action.payload;
       return {
         ...state,
-        listProductsCart: prods
+        listProductsCart: prods,
       };
     }
     case ADD_COUNT_PRODUCTS: {
@@ -49,6 +59,26 @@ export default function (
       return {
         ...state,
         count: count,
+      };
+    }
+    case SET_CLIENT: {
+      const client = action.payload;
+      return {
+        ...state,
+        client: client,
+      };
+    }
+    case DELETE_CLIENT: {
+      return {
+        ...state,
+        client: {
+          id: 0,
+          nombre: '',
+          identificacion: '',
+          telefono: '',
+          email: '',
+          activo: '',
+        },
       };
     }
     default:

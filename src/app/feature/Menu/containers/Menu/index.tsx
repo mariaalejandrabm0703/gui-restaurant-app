@@ -1,7 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import Category from '../../components/category/index';
-import { DivContainer } from './styles';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import { IProduct } from '../../../Home/models/Home';
 import ToastError from '../../../../shared/components/ToastError';
@@ -40,6 +39,7 @@ export const Menu: React.FC<MenuProps> = ({
   return (
     <div className="card">
       <ToastError />
+      <h1>Menú</h1>
       <div className="m-2">
         {categorias.map((categoria, index) => (
           <Category key={index} category={categoria} products={listProducts} />

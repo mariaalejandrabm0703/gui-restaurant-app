@@ -11,4 +11,6 @@ const mapStateToProps = (state: Istate) => {
   };
 };
 
-export const ManageMyOrder = connect(mapStateToProps, {setOrderAsync})(MyOrder);
+export const ManageMyOrder = connect(mapStateToProps, { setOrderAsync })(
+  MyOrder
+);

@@ -1,16 +1,20 @@
 import {
   ADD_COUNT_PRODUCTS,
   DEFAULT_STATE,
+  DELETE_CLIENT,
   DELETE_COUNT_PRODUCTS,
   IActionTypesCart,
+  SET_CLIENT,
   SET_COUNT_PRODUCTS,
   SET_PRODUCTS,
   SUBT_COUNT_PRODUCTS,
 } from '../../actions/cart/ActionTypesCart';
 import { ERROR, IActionTypesMain, IS_LOADING } from '../main/ActionTypesMain';
 import { CartRepository } from '../../../api/cart.repository';
+import { IClient } from 'app/feature/Cart/models/Cart';
 import { IErrorToast } from '../../modelo/IStateMain';
 import { IProductOrder } from '../../../../feature/Home/models/Home';
+
 const errorDefault = { message: '', type: '' };
 
 export function defaultState(id: number): IActionTypesCart {
@@ -89,5 +93,58 @@ export function setCountProduct(count: number): IActionTypesCart {
   return {
     type: SET_COUNT_PRODUCTS,
     payload: count,
+  };
+}
+
+export function setClient(client: IClient): IActionTypesCart {
+  return {
+    type: SET_CLIENT,
+    payload: client,
+  };
+}
+
+export function deleteClient(): IActionTypesCart {
+  return {
+    type: DELETE_CLIENT,
+    payload: {
+      id: 0,
+      nombre: '',
+      identificacion: '',
+      telefono: '',
+      email: '',
+      activo: '',
+    },
+  };
+}
+
+export function setClientAsync(id: string) {
+  return async function (dispacth: any) {
+    dispacth(isLoading(true));
+    await CartRepository.findClient(id)
+      .then((response: any) => {
+        dispacth(isLoading(false));
+        dispacth(setError(errorDefault));
+        return dispacth(setClient(response.data));
+      })
+      .catch((err) => {
+        dispacth(isLoading(false));
+        dispacth(
+          setError({
+            type: 'cart',
+            message:
+              'Error al cargar el cliente. Por favor, intente nuevamente',
+          })
+        );
+        return dispacth(
+          setClient({
+            id: 0,
+            nombre: '',
+            identificacion: '',
+            telefono: '',
+            email: '',
+            activo: '',
+          })
+        );
+      });
   };
 }

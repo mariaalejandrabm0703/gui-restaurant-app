@@ -11,7 +11,7 @@ interface CategoryProps {
 const Category: React.FC<CategoryProps> = ({ category, products }) => {
   return (
     <div>
-      <h1>{category}:</h1>
+      <h5>{category}:</h5>
       <div className="row-cards">
         {products
           .filter((item) => item.categoria === category)

@@ -8,4 +8,9 @@ export const CartRepository = {
    * @returns información del pedido
    */
   findProductsByOrder: (id: number) => axios.get(`${baseUrl}/pedidos/`+id),
+  /**
+   * Obtiene la información del cliente según la identificacion
+   * @returns información del cliente
+   */
+  findClient: (id: string) => axios.get(`${baseUrl}/client/`+id),
 };

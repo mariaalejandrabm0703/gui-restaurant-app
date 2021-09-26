@@ -27,7 +27,7 @@ export const MyOrder: React.FC<OrderProps> = ({
   return (
     <>
       <ToastError />
-      <h1>Hola3</h1>
+      <h1>Mi pedido</h1>
     </>
   );
 };

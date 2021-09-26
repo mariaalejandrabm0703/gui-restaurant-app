@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 const MyOrderPage: React.FC<RouteComponentProps> = () => (
   <Layout title="MyOrder" description="Mi pedido">
-    <ManageMyOrder>Hola MyOrderPage</ManageMyOrder>
+    <ManageMyOrder>Hola MyOrderPage</ManageMyOrder>    
   </Layout>
 );
 

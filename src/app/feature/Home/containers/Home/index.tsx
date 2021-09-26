@@ -38,7 +38,7 @@ export const Home: React.FC<HomeProps> = ({
   return (
     <>
       <ToastError />
-      <h1>Hola2</h1>
+      <h1>Home</h1>
       <p>{listProducts.length}</p>
       <p>{listRanking.length}</p>
     </>

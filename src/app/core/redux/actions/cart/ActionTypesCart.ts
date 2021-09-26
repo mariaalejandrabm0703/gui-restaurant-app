@@ -1,3 +1,4 @@
+import { IClient } from 'app/feature/Cart/models/Cart';
 import { IProductOrder } from '../../../../feature/Home/models/Home';
 
 export const DEFAULT_STATE = '[CART] DEFAULT_STATE';
@@ -7,6 +8,9 @@ export const ADD_COUNT_PRODUCTS = '[CART] SUMAR_CONTAR_PRODUCTOS';
 export const SUBT_COUNT_PRODUCTS = '[CART] RESTAR_CONTAR_PRODUCTOS';
 export const DELETE_COUNT_PRODUCTS = '[CART] BORRAR_CONTAR_PRODUCTOS';
 export const SET_COUNT_PRODUCTS = '[CART] SETEAR_CONTAR_PRODUCTOS';
+
+export const SET_CLIENT = '[CART] SETEAR_CLIENTE';
+export const DELETE_CLIENT = '[CART] BORRAR_CLIENTE';
 
 interface IDefaultState {
   type: typeof DEFAULT_STATE;
@@ -38,10 +42,22 @@ interface ISetCountAction {
   payload: number;
 }
 
+interface ISetClientAction {
+  type: typeof SET_CLIENT;
+  payload: IClient;
+}
+
+interface IDeleteClientAction {
+  type: typeof DELETE_CLIENT;
+  payload: IClient;
+}
+
 export type IActionTypesCart =
   | IDefaultState
   | ISetProductsAction
   | IAddCountAction
   | ISubtCountAction
   | IDeletetCountAction
+  | ISetClientAction
+  | IDeleteClientAction
   | ISetCountAction;
