@@ -36,12 +36,12 @@ export const Home: React.FC<HomeProps> = ({
     }
   }, [listRanking, getProductsRanking]);
   return (
-    <>
+    <div className="container">
       <ToastError />
       <h1>Home</h1>
       <p>{listProducts.length}</p>
       <p>{listRanking.length}</p>
-    </>
+    </div>
   );
 };
 

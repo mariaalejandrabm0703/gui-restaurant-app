@@ -25,10 +25,10 @@ export const MyOrder: React.FC<OrderProps> = ({
   // }, [myOrder]);
 
   return (
-    <>
+    <div className="container">
       <ToastError />
       <h1>Mi pedido</h1>
-    </>
+    </div>
   );
 };
 

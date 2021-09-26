@@ -2,7 +2,7 @@ export interface IClient {
     /**
      * Identificador del cliente
      */
-    id: number;
+    id?: number;
     /**
      * Nombre del cliente
      */
@@ -18,7 +18,7 @@ export interface IClient {
     /**
      * Estado del producto
      */
-    activo: string;
+    activo?: string;
     /**
      * Email del cliente
      */
