@@ -72,7 +72,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                   <Field
                     name="email"
                     className="form-control col-12"
-                    placeholder="algo@algo.com"
+                    placeholder="valen@gmail.com"
                     autoComplete="off"
                   />
                   {errors.email && touched.email ? (
