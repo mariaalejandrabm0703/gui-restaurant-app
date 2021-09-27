@@ -25,7 +25,7 @@ const CartProduct: React.FC<CartProductProps> = ({
   React.useEffect(() => {
     const productFilter =
       listProductMenu &&
-      listProductMenu.filter((item) => item.id === productOrder.id)[0];
+      listProductMenu.filter((item) => item.id === productOrder.producto)[0];
 
     productFilter &&
       setProductCart({
@@ -75,7 +75,7 @@ const CartProduct: React.FC<CartProductProps> = ({
 CartProduct.propTypes = {
   listProductMenu: PropTypes.array.isRequired,
   productOrder: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    producto: PropTypes.number.isRequired,
     precio: PropTypes.number.isRequired,
     cantidad: PropTypes.number.isRequired,
   }).isRequired,

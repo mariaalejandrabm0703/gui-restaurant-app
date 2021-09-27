@@ -10,15 +10,8 @@ const initialState: IStateOrder = {
     fechaEntrega: '',
     precio: 0,
     activo: '',
-    pedidosProductos: [],
-    cliente: {
-      id: 0,
-      nombre: '',
-      identificacion: '',
-      telefono: '',
-      email: '',
-      activo: '',
-    },
+    productos: [],
+    cliente: 0
   },
 };
 

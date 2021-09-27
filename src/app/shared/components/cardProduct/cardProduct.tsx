@@ -31,7 +31,7 @@ const CardProduct: React.FC<CardProductProps> = ({
     if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =
-      listProducts && listProducts.filter((prod) => prod.id === id);
+      listProducts && listProducts.filter((prod) => prod.producto === id);
     let quantity: number = 0;
     if (sameProd && sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
@@ -40,9 +40,9 @@ const CardProduct: React.FC<CardProductProps> = ({
     }
 
     //guardar nuevo prods
-    let prods = listProducts && listProducts.filter((prod) => prod.id !== id);
+    let prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
     const prod: IProductOrder = {
-      id: id,
+      producto: id,
       cantidad: quantity + 1,
       precio: price,
     };

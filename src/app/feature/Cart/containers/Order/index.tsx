@@ -4,6 +4,7 @@ import { IProduct, IProductOrder } from '../../../Home/models/Home';
 import ClientForm from '../../components/ClientForm/index';
 import { IClient } from '../../models/Cart';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
+import { IMyOrder } from 'app/feature/MyOrder/models/MyOrder';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
 
@@ -17,6 +18,7 @@ interface CartProps {
   addCountProduct: () => void;
   subtCountProduct: () => void;
   setProducts: (products: Array<IProductOrder>) => void;
+  setOrderAsync: (pedido:IMyOrder) => void;
 }
 
 const initialValues = {
@@ -36,10 +38,30 @@ export const Cart: React.FC<CartProps> = ({
   addCountProduct,
   subtCountProduct,
   setProducts,
+  setOrderAsync,
 }) => {
+  const [date, setDate] = React.useState('01/10/2021 12:00:00');
 
   const confirmCart = () => {
     console.log('confirmar compra');
+    let pedido: IMyOrder;
+    if (client.id !== 0) {
+      const  precio = listProducts.map(item => item.precio*item.cantidad).reduce((previousValue, currentValue) => previousValue + currentValue);
+      pedido = {
+        fechaEntrega: date,
+        precio: precio,
+        activo: '1',
+        productos: listProducts,
+        cliente: client.id,
+      };
+      console.log(pedido);
+      setOrderAsync(pedido);
+    }    
+  };
+
+  const handleChangeDate = (e: React.FormEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
+    setDate(e.currentTarget.value);
   };
 
   const handleSubmit = (values: IClient) => {
@@ -60,7 +82,7 @@ export const Cart: React.FC<CartProps> = ({
     if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =
-      listProducts && listProducts.filter((prod) => prod.id === id);
+      listProducts && listProducts.filter((prod) => prod.producto === id);
     let quantity: number = 0;
     if (sameProd && sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
@@ -69,9 +91,9 @@ export const Cart: React.FC<CartProps> = ({
     }
 
     // guardar nuevo prods
-    let prods = listProducts && listProducts.filter((prod) => prod.id !== id);
+    let prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
     const prod: IProductOrder = {
-      id: id,
+      producto: id,
       cantidad: quantity + 1,
       precio: price,
     };
@@ -89,24 +111,22 @@ export const Cart: React.FC<CartProps> = ({
     if (subtCountProduct) subtCountProduct();
     // contar mismos prods
     const sameProd =
-      listProducts && listProducts.filter((prod) => prod.id === id);
+      listProducts && listProducts.filter((prod) => prod.producto === id);
     let quantity: number = 0;
     if (sameProd && sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
     } else {
       quantity = 0;
     }
-    console.log('quantity', quantity);
+
     // guardar los prods
     let prods;
-    console.log('id ', id);
     if (quantity - 1 === 0 || quantity === 0) {
-      prods = listProducts && listProducts.filter((prod) => prod.id !== id);
-      console.log('prods ', prods);
+      prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
     } else {
-      prods = listProducts && listProducts.filter((prod) => prod.id !== id);
+      prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
       const prod: IProductOrder = {
-        id: id,
+        producto: id,
         cantidad: quantity - 1,
         precio: price,
       };
@@ -117,7 +137,6 @@ export const Cart: React.FC<CartProps> = ({
       }
     }
     if (setProducts) {
-      console.log('prods2 ', prods);
       setProducts(prods && prods);
     }
   };
@@ -138,6 +157,16 @@ export const Cart: React.FC<CartProps> = ({
               />
             )}
             <hr></hr>
+            <div className="col-12 col-md-3">
+              <label htmlFor="fecha" className="col-12 col-form-label">
+                Fecha de entrega:
+              </label>
+              <input
+                onChange={handleChangeDate}
+                type="text"
+                value={date}
+              ></input>
+            </div>
             <ListProds
               listProducts={listProducts}
               listProductMenu={listProductMenu}
@@ -146,7 +175,11 @@ export const Cart: React.FC<CartProps> = ({
             />
             <hr></hr>
             <div className="btn-cart">
-              <a type="submit" className="btn btn-primary">
+              <a
+                type="submit"
+                onClick={confirmCart}
+                className="btn btn-primary"
+              >
                 Confirmar compra <i className="fas fa-check-circle"></i>
               </a>
             </div>
@@ -179,4 +212,5 @@ Cart.propTypes = {
   addCountProduct: PropTypes.func.isRequired,
   subtCountProduct: PropTypes.func.isRequired,
   setProducts: PropTypes.func.isRequired,
+  setOrderAsync: PropTypes.func.isRequired,
 };

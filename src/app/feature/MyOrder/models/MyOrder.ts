@@ -4,7 +4,7 @@ export interface IMyOrder {
   /**
    * Identificador del pedido
    */
-  id: number;
+  id?: number;
   /**
    * Descripción del pedido
    */
@@ -20,16 +20,9 @@ export interface IMyOrder {
   /**
    * Productos
    */
-  pedidosProductos: IProductOrder[];
+  productos: IProductOrder[];
   /**
    * cliente del pedido
    */
-  cliente: {
-    id: number,
-    nombre: string,
-    identificacion: string,
-    telefono: string,
-    email: string,
-    activo: string
-  };
+  cliente?: number;
 }

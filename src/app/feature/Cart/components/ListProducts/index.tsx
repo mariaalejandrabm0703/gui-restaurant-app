@@ -44,7 +44,7 @@ const ListProds: React.FC<ListProdsProps> = ({
         {listProducts.map((item) => {
           return (
             <CartProduct
-              key={item.id}
+              key={item.producto}
               listProductMenu={listProductMenu}
               productOrder={item}
               addProduct={addProduct}

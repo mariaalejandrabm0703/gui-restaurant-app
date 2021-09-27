@@ -7,6 +7,7 @@ import {
 import { Cart } from '../containers/Order/index';
 import { Istate } from 'app/core/redux/modelo/GeneralState';
 import { connect } from 'react-redux';
+import {setOrderAsync} from '../../../core/redux/actions/order/ActionsOrder';
 
 const mapStateToProps = (state: Istate) => {
   return {
@@ -23,4 +24,5 @@ export const ManageCart = connect(mapStateToProps, {
   addCountProduct,
   subtCountProduct,
   setProducts,
+  setOrderAsync,
 })(Cart);

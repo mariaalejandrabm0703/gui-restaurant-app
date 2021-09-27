@@ -122,10 +122,11 @@ export function registryClientAsync(client: IClient) {
     dispacth(isLoading(true));
     await CartRepository.registryClient(client)
       .then((response: any) => {
+        console.log(response)
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
         const c = {
-          id: response,
+          id: response.data,
           nombre: client.nombre,
           activo: '1',
           identificacion: client.identificacion,
@@ -163,7 +164,7 @@ export function setClientAsync(id: string, client: IClient) {
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        if (response.data[0] && response.data.length > 0) {
+        if (response.data[0] && response.data.length > 0) {         
           return dispacth(setClient(response.data[0]));
         }
         return dispacth(registryClientAsync(client));

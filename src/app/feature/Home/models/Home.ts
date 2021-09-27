@@ -29,7 +29,7 @@ export interface IProductOrder {
   /**
    * Identificador del producto
    */
-  id: number;
+   producto: number;
   /**
    * Precio del producto
    */

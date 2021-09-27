@@ -9,14 +9,13 @@ interface OrderProps {
   myOrder: IMyOrder;
   isLoading: boolean;
   errorMessage: IErrorToast;
-  setOrderAsync:(id: number) => void;
 }
 
 export const MyOrder: React.FC<OrderProps> = ({
   myOrder,
   isLoading,
    errorMessage,
-   setOrderAsync
+
 }) => {
   // React.useEffect(() => {
   //   if (myOrder && errorMessage.message === '') {
@@ -31,27 +30,3 @@ export const MyOrder: React.FC<OrderProps> = ({
     </div>
   );
 };
-
-MyOrder.propTypes = {
-  myOrder: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    fechaEntrega: PropTypes.string.isRequired,
-    precio: PropTypes.number.isRequired,
-    activo: PropTypes.string.isRequired,
-    pedidosProductos: PropTypes.array.isRequired,
-    cliente: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      nombre: PropTypes.string.isRequired,
-      identificacion: PropTypes.string.isRequired,
-      telefono: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      activo: PropTypes.string.isRequired,
-    }).isRequired
-  }).isRequired,  
-  isLoading: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.shape({
-      message: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-    }).isRequired,
-    setOrderAsync: PropTypes.func.isRequired,
-  };
