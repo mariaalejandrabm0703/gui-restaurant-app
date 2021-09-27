@@ -43,7 +43,6 @@ export const Cart: React.FC<CartProps> = ({
   const [date, setDate] = React.useState('01/10/2021 12:00:00');
 
   const confirmCart = () => {
-    console.log('confirmar compra');
     let pedido: IMyOrderReg;
     if (client.id !== 0) {
       const  precio = listProducts.map(item => item.precio*item.cantidad).reduce((previousValue, currentValue) => previousValue + currentValue);
@@ -59,7 +58,6 @@ export const Cart: React.FC<CartProps> = ({
   };
 
   const handleChangeDate = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
     setDate(e.currentTarget.value);
   };
 

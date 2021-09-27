@@ -3,10 +3,10 @@ import {
   addCountProduct,
   setProducts,
 } from '../../../core/redux/actions/cart/ActionsCart';
-import { connect } from 'react-redux';
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { Istate } from '../../../core/redux/modelo/GeneralState';
 import React from 'react';
+import { connect } from 'react-redux';
 
 interface CardProductProps {
   id: number;
@@ -16,6 +16,7 @@ interface CardProductProps {
   listProducts?: Array<IProductOrder>;
   addCountProduct?: () => void;
   setProducts?: (products: Array<IProductOrder>) => void;
+  showAdd: boolean;
 }
 
 const CardProduct: React.FC<CardProductProps> = ({
@@ -26,6 +27,7 @@ const CardProduct: React.FC<CardProductProps> = ({
   listProducts,
   addCountProduct,
   setProducts,
+  showAdd = true,
 }) => {
   const addProduct = () => {
     if (addCountProduct) addCountProduct();
@@ -40,7 +42,8 @@ const CardProduct: React.FC<CardProductProps> = ({
     }
 
     //guardar nuevo prods
-    let prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
+    let prods =
+      listProducts && listProducts.filter((prod) => prod.producto !== id);
     const prod: IProductOrder = {
       producto: id,
       cantidad: quantity + 1,
@@ -64,11 +67,13 @@ const CardProduct: React.FC<CardProductProps> = ({
           <p className="card-title">{description}</p>
           <p className="card-text">${price}</p>
         </div>
-        <div className="btn-cart">
-          <a type="submit" onClick={addProduct} className="btn btn-primary">
-            Agregar <i className="fas fa-shopping-cart"></i>
-          </a>
-        </div>
+        {showAdd ? (
+          <div className="btn-cart">
+            <a type="submit" onClick={addProduct} className="btn btn-primary">
+              Agregar <i className="fas fa-shopping-cart"></i>
+            </a>
+          </div>
+        ) : null}
       </div>
     </div>
   );
@@ -82,6 +87,7 @@ CardProduct.propTypes = {
   listProducts: PropTypes.array,
   addCountProduct: PropTypes.func,
   setProducts: PropTypes.func,
+  showAdd: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state: Istate) => {

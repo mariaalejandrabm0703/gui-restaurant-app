@@ -122,7 +122,6 @@ export function registryClientAsync(client: IClient) {
     dispacth(isLoading(true));
     await CartRepository.registryClient(client)
       .then((response: any) => {
-        console.log(response)
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
         const c = {

@@ -22,6 +22,7 @@ const Category: React.FC<CategoryProps> = ({ category, products }) => {
               description={product.descripcion}
               price={product.precio}
               img={product.img}
+              showAdd={true}
             />
           ))}
       </div>

@@ -81,7 +81,7 @@ export function setOrderAsync(order: IMyOrderReg) {
             fechaEntrega: '',
             precio: 0,
             activo: '',
-            productosPedidos: [],
+            pedidosProductos: [],
             cliente: {
               id: 0,
               nombre: '',
@@ -120,7 +120,7 @@ export function searchOrderAsync(id: number) {
             fechaEntrega: '',
             precio: 0,
             activo: '',
-            productosPedidos: [],
+            pedidosProductos: [],
             cliente: {
               id: 0,
               nombre: '',

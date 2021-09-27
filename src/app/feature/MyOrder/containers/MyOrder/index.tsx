@@ -3,6 +3,7 @@ import * as React from 'react';
 import FindOrder from '../../components/FindOrder/index';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import { IMyOrder } from '../../models/MyOrder';
+import { IProduct } from 'app/feature/Home/models/Home';
 import ShowInfoOrder from '../../components/ShowInfoOrder/index';
 import ToastError from '../../../../shared/components/ToastError';
 
@@ -11,6 +12,8 @@ interface OrderProps {
   isLoading: boolean;
   errorMessage: IErrorToast;
   searchOrderAsync: (id: number) => void;
+  setProductsAsync: () => void;
+  listProducts: Array<IProduct>;
 }
 
 export const MyOrder: React.FC<OrderProps> = ({
@@ -18,7 +21,16 @@ export const MyOrder: React.FC<OrderProps> = ({
   isLoading,
   errorMessage,
   searchOrderAsync,
+  setProductsAsync,
+  listProducts,
 }) => {
+
+  React.useEffect(() => {
+    if (listProducts && listProducts.length === 0) {
+      setProductsAsync();
+    }
+  }, []);
+
   return (
     <div className="container">
       <ToastError />
@@ -44,7 +56,7 @@ MyOrder.propTypes = {
     fechaEntrega: PropTypes.string.isRequired,
     precio: PropTypes.number.isRequired,
     activo: PropTypes.string.isRequired,
-    productosPedidos: PropTypes.array.isRequired,
+    pedidosProductos: PropTypes.array.isRequired,
     cliente: PropTypes.shape({
       id: PropTypes.number.isRequired,
       nombre: PropTypes.string.isRequired,
@@ -60,4 +72,6 @@ MyOrder.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
   searchOrderAsync: PropTypes.func.isRequired,
+  setProductsAsync: PropTypes.func.isRequired,
+  listProducts: PropTypes.array.isRequired,
 };

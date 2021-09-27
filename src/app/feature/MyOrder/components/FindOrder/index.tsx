@@ -21,7 +21,6 @@ const validationSchema = Yup.object().shape<{ id: number }>({
 
 const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
   const handleSubmit = (values: { id: number }) => {
-    console.log('submit ', values.id);
     searchOrderAsync(values.id);
   };
   return (
@@ -73,7 +72,7 @@ FindOrder.propTypes = {
     fechaEntrega: PropTypes.string.isRequired,
     precio: PropTypes.number.isRequired,
     activo: PropTypes.string.isRequired,
-    productosPedidos: PropTypes.array.isRequired,
+    pedidosProductos: PropTypes.array.isRequired,
     cliente: PropTypes.shape({
       id: PropTypes.number.isRequired,
       nombre: PropTypes.string.isRequired,
