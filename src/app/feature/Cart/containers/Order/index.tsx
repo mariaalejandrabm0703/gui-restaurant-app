@@ -4,7 +4,7 @@ import { IProduct, IProductOrder } from '../../../Home/models/Home';
 import ClientForm from '../../components/ClientForm/index';
 import { IClient } from '../../models/Cart';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
-import { IMyOrder } from 'app/feature/MyOrder/models/MyOrder';
+import { IMyOrderReg } from 'app/feature/MyOrder/models/MyOrder';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
 
@@ -18,7 +18,7 @@ interface CartProps {
   addCountProduct: () => void;
   subtCountProduct: () => void;
   setProducts: (products: Array<IProductOrder>) => void;
-  setOrderAsync: (pedido:IMyOrder) => void;
+  setOrderAsync: (pedido:IMyOrderReg) => void;
 }
 
 const initialValues = {
@@ -44,7 +44,7 @@ export const Cart: React.FC<CartProps> = ({
 
   const confirmCart = () => {
     console.log('confirmar compra');
-    let pedido: IMyOrder;
+    let pedido: IMyOrderReg;
     if (client.id !== 0) {
       const  precio = listProducts.map(item => item.precio*item.cantidad).reduce((previousValue, currentValue) => previousValue + currentValue);
       pedido = {
@@ -52,9 +52,8 @@ export const Cart: React.FC<CartProps> = ({
         precio: precio,
         activo: '1',
         productos: listProducts,
-        cliente: client.id,
+        cliente: client.id!,
       };
-      console.log(pedido);
       setOrderAsync(pedido);
     }    
   };

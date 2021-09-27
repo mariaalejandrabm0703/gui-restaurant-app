@@ -1,7 +1,7 @@
 import { Istate } from '../../../core/redux/modelo/GeneralState';
 import { MyOrder } from '../containers/MyOrder';
 import { connect } from 'react-redux';
-import { setOrderAsync } from 'app/core/redux/actions/order/ActionsOrder';
+import { searchOrderAsync } from 'app/core/redux/actions/order/ActionsOrder';
 
 const mapStateToProps = (state: Istate) => {
   return {
@@ -11,6 +11,6 @@ const mapStateToProps = (state: Istate) => {
   };
 };
 
-export const ManageMyOrder = connect(mapStateToProps)(
+export const ManageMyOrder = connect(mapStateToProps, {searchOrderAsync})(
   MyOrder
 );
