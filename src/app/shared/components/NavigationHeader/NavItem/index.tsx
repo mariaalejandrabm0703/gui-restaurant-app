@@ -12,9 +12,7 @@ interface NavItemProps {
 }
 
 export const NavItem: React.FC<NavItemProps> = ({ label, to, count }) => {
-  // React.useEffect(() => {
-  //   console.log('count ', count);
-  // }, []);
+
   return (
     <NavItemDiv>
       <Link to={to} replace={true}>

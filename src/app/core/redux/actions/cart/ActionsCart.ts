@@ -117,14 +117,56 @@ export function deleteClient(): IActionTypesCart {
   };
 }
 
-export function setClientAsync(id: string) {
+export function registryClientAsync(client: IClient) {
+  return async function (dispacth: any) {
+    dispacth(isLoading(true));
+    await CartRepository.registryClient(client)
+      .then((response: any) => {
+        dispacth(isLoading(false));
+        dispacth(setError(errorDefault));
+        const c = {
+          id: response,
+          nombre: client.nombre,
+          activo: '1',
+          identificacion: client.identificacion,
+          telefono: client.telefono,
+          email: client.email,
+        };
+        return dispacth(setClient(c));
+      })
+      .catch((err) => {
+        dispacth(isLoading(false));
+        dispacth(
+          setError({
+            type: 'cart',
+            message:
+              'Error al cargar el cliente. Por favor, intente nuevamente',
+          })
+        );
+        return dispacth(
+          setClient({
+            id: 0,
+            nombre: '',
+            identificacion: '',
+            telefono: '',
+            email: '',
+            activo: '',
+          })
+        );
+      });
+  };
+}
+export function setClientAsync(id: string, client: IClient) {
   return async function (dispacth: any) {
     dispacth(isLoading(true));
     await CartRepository.findClient(id)
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        return dispacth(setClient(response.data));
+        if (response.data[0] && response.data.length > 0) {
+          return dispacth(setClient(response.data[0]));
+        }
+        return dispacth(registryClientAsync(client));
       })
       .catch((err) => {
         dispacth(isLoading(false));

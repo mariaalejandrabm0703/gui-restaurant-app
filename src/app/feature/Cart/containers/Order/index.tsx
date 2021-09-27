@@ -14,19 +14,17 @@ interface CartProps {
   listProductMenu: Array<IProduct>;
   isLoading: boolean;
   errorMessage: IErrorToast;
-  setClientAsync: (id: string) => void;
+  setClientAsync: (id: string, client: IClient) => void;
   addCountProduct: () => void;
   subtCountProduct: () => void;
   setProducts: (products: Array<IProductOrder>) => void;
 }
 
 const initialValues = {
-  id: 0,
   email: '',
   identificacion: '',
   nombre: '',
   telefono: '',
-  activo: '',
 };
 
 export const Cart: React.FC<CartProps> = ({
@@ -44,8 +42,18 @@ export const Cart: React.FC<CartProps> = ({
     console.log('confirmar compra');
   };
 
-  const handleSubmit = () =>{
-    console.log('formik');
+  const handleSubmit = (values: IClient) => {
+    const c = {
+      id: client.id,
+      nombre: values.nombre,
+      identificacion: values.identificacion,
+      telefono: values.telefono,
+      email: values.email,
+      activo: '1',
+    };
+    if (c.id === 0) {
+      setClientAsync(values.identificacion, c);
+    }
   };
 
   const addProduct = (id: number, price: number) => {
@@ -118,7 +126,15 @@ export const Cart: React.FC<CartProps> = ({
         <h1>Mis compras</h1>
         {listProducts.length > 0 ? (
           <div>
-            <ClientForm initialValues={initialValues} handleSubmit={handleSubmit}/>
+            {client.id !== 0 ? (
+              <h6 className="color-blue-text">Bienvenido {client.nombre}</h6>
+            ) : (
+              <ClientForm
+                initialValues={initialValues}
+                handleSubmit={handleSubmit}
+                client={client}
+              />
+            )}
             <hr></hr>
             <ListProds
               listProducts={listProducts}
@@ -129,10 +145,10 @@ export const Cart: React.FC<CartProps> = ({
             />
             <hr></hr>
             <div className="btn-cart">
-          <a type="submit" className="btn btn-primary">
-            Confirmar compra <i className="fas fa-check-circle"></i>
-          </a>
-        </div>
+              <a type="submit" className="btn btn-primary">
+                Confirmar compra <i className="fas fa-check-circle"></i>
+              </a>
+            </div>
           </div>
         ) : (
           <h5>*No se han añadido productos al carrito.</h5>

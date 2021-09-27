@@ -1,3 +1,4 @@
+import { IClient } from 'app/feature/Cart/models/Cart';
 import axios from 'axios';
 
 import { baseUrl } from '../config/AxiosConfig';
@@ -12,5 +13,7 @@ export const CartRepository = {
    * Obtiene la información del cliente según la identificacion
    * @returns información del cliente
    */
-  findClient: (id: string) => axios.get(`${baseUrl}/client/`+id),
+  findClient: (id: string) => axios.get(`${baseUrl}/clientes/`+id),
+
+  registryClient: (client: IClient) => axios.post(`${baseUrl}/clientes`, client),
 };

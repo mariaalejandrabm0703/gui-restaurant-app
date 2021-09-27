@@ -6,7 +6,8 @@ import React from 'react';
 
 interface ClientFormProps {
   initialValues: IClient;
-  handleSubmit: () => void;
+  handleSubmit: (values: IClient) => void;
+  client: IClient;
 }
 
 const validationSchema = Yup.object().shape<IClient>({
@@ -24,9 +25,10 @@ const validationSchema = Yup.object().shape<IClient>({
 const ClientForm: React.FC<ClientFormProps> = ({
   initialValues,
   handleSubmit,
+  client,
 }) => {
   return (
-    <div>
+    <div className="mt-4">
       <h5>Cliente del pedido:</h5>
       <div className="">
         <Formik
@@ -34,7 +36,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched, setFieldValue }) => (
+          {({ errors, touched }) => (
             <Form >
               <div className="row mb-3">
                 <div className="col-12 col-md-3">
@@ -45,6 +47,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                     name="nombre"
                     className="form-control col-12"
                     placeholder="Valentina Bohorquez"
+                    autoComplete="off"
                   />
                   {errors.nombre && touched.nombre ? (
                     <small className="text-danger">{errors.nombre}</small>
@@ -58,6 +61,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                     name="identificacion"
                     className="form-control col-12"
                     placeholder="1092456987"
+                    autoComplete="off"
                   />
                   {errors.identificacion && touched.identificacion ? (
                     <small className="text-danger">{errors.identificacion}</small>
@@ -71,6 +75,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                     name="email"
                     className="form-control col-12"
                     placeholder="algo@algo.com"
+                    autoComplete="off"
                   />
                   {errors.email && touched.email ? (
                     <small className="text-danger">{errors.email}</small>
@@ -84,6 +89,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                     name="telefono"
                     className="form-control col-12"
                     placeholder="305 456 7896"
+                    autoComplete="off"
                   />
                   {errors.telefono && touched.telefono ? (
                     <small className="text-danger">{errors.telefono}</small>
@@ -105,6 +111,13 @@ const ClientForm: React.FC<ClientFormProps> = ({
 
 ClientForm.propTypes = {
   initialValues: PropTypes.shape({
+    nombre: PropTypes.string.isRequired,
+    identificacion: PropTypes.string.isRequired,
+    telefono: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  client: PropTypes.shape({
     id: PropTypes.number.isRequired,
     nombre: PropTypes.string.isRequired,
     identificacion: PropTypes.string.isRequired,
@@ -112,6 +125,5 @@ ClientForm.propTypes = {
     activo: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
   }).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
 };
 export default ClientForm;

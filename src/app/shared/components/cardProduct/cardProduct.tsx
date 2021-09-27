@@ -51,7 +51,6 @@ const CardProduct: React.FC<CardProductProps> = ({
     } else {
       prods = [prod];
     }
-    console.log(prods);
     if (setProducts) {
       setProducts(prods && prods);
     }
