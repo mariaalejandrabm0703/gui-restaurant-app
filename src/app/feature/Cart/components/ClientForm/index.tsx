@@ -7,7 +7,6 @@ import React from 'react';
 interface ClientFormProps {
   initialValues: IClient;
   handleSubmit: (values: IClient) => void;
-  client: IClient;
 }
 
 const validationSchema = Yup.object().shape<IClient>({
@@ -25,7 +24,6 @@ const validationSchema = Yup.object().shape<IClient>({
 const ClientForm: React.FC<ClientFormProps> = ({
   initialValues,
   handleSubmit,
-  client,
 }) => {
   return (
     <div className="mt-4">
@@ -117,13 +115,5 @@ ClientForm.propTypes = {
     email: PropTypes.string.isRequired,
   }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  client: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    nombre: PropTypes.string.isRequired,
-    identificacion: PropTypes.string.isRequired,
-    telefono: PropTypes.string.isRequired,
-    activo: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }).isRequired,
 };
 export default ClientForm;

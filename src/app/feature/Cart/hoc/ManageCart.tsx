@@ -1,4 +1,9 @@
-import { addCountProduct, setClientAsync,setProducts, subtCountProduct } from '../../../core/redux/actions/cart/ActionsCart';
+import {
+  addCountProduct,
+  setClientAsync,
+  setProducts,
+  subtCountProduct,
+} from '../../../core/redux/actions/cart/ActionsCart';
 import { Cart } from '../containers/Order/index';
 import { Istate } from 'app/core/redux/modelo/GeneralState';
 import { connect } from 'react-redux';
@@ -13,4 +18,9 @@ const mapStateToProps = (state: Istate) => {
   };
 };
 
-export const ManageCart = connect(mapStateToProps, { setClientAsync, addCountProduct, subtCountProduct, setProducts })(Cart);
+export const ManageCart = connect(mapStateToProps, {
+  setClientAsync,
+  addCountProduct,
+  subtCountProduct,
+  setProducts,
+})(Cart);

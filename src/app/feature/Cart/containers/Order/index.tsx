@@ -1,12 +1,12 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import * as Yup from 'yup';
 import { IProduct, IProductOrder } from '../../../Home/models/Home';
 import ClientForm from '../../components/ClientForm/index';
 import { IClient } from '../../models/Cart';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
+import { useDispatch } from 'react-redux';
 
 interface CartProps {
   listProducts: Array<IProductOrder>;
@@ -38,6 +38,8 @@ export const Cart: React.FC<CartProps> = ({
   subtCountProduct,
   setProducts,
 }) => {
+  const dispatch = useDispatch();
+
   const confirmCart = () => {
     console.log('confirmar compra');
   };
@@ -52,12 +54,12 @@ export const Cart: React.FC<CartProps> = ({
       activo: '1',
     };
     if (c.id === 0) {
-      setClientAsync(values.identificacion, c);
+      dispatch(setClientAsync(values.identificacion, c));
     }
   };
 
   const addProduct = (id: number, price: number) => {
-    if (addCountProduct) addCountProduct();
+    if (addCountProduct) dispatch(addCountProduct());
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((prod) => prod.id === id);
@@ -81,12 +83,12 @@ export const Cart: React.FC<CartProps> = ({
       prods = [prod];
     }
     if (setProducts) {
-      setProducts(prods && prods);
+      dispatch(setProducts(prods && prods));
     }
   };
 
   const subtProduct = (id: number, price: number) => {
-    if (subtCountProduct) subtCountProduct();
+    if (subtCountProduct) dispatch(subtCountProduct());
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((prod) => prod.id === id);
@@ -96,11 +98,13 @@ export const Cart: React.FC<CartProps> = ({
     } else {
       quantity = 0;
     }
-
+    console.log('quantity', quantity);
     // guardar los prods
     let prods;
-    if (quantity - 1 === 0) {
+    console.log('id ', id);
+    if (quantity - 1 === 0 || quantity === 0) {
       prods = listProducts && listProducts.filter((prod) => prod.id !== id);
+      console.log('prods ', prods);
     } else {
       prods = listProducts && listProducts.filter((prod) => prod.id !== id);
       const prod: IProductOrder = {
@@ -115,7 +119,8 @@ export const Cart: React.FC<CartProps> = ({
       }
     }
     if (setProducts) {
-      setProducts(prods && prods);
+      console.log('prods2 ', prods);
+      dispatch(setProducts(prods && prods));
     }
   };
 
@@ -132,7 +137,6 @@ export const Cart: React.FC<CartProps> = ({
               <ClientForm
                 initialValues={initialValues}
                 handleSubmit={handleSubmit}
-                client={client}
               />
             )}
             <hr></hr>

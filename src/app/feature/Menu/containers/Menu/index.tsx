@@ -4,6 +4,7 @@ import Category from '../../components/category/index';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import { IProduct } from '../../../Home/models/Home';
 import ToastError from '../../../../shared/components/ToastError';
+import { useDispatch } from 'react-redux';
 
 interface MenuProps {
   listProducts: Array<IProduct>;
@@ -18,6 +19,8 @@ export const Menu: React.FC<MenuProps> = ({
   errorMessage,
   getAllProducts,
 }) => {
+  const dispatch = useDispatch();
+
   const [categorias, setcategorias] = React.useState([
     'Entrada',
     'Ensaladas',
@@ -33,7 +36,7 @@ export const Menu: React.FC<MenuProps> = ({
       listProducts.length === 0 &&
       errorMessage.message === ''
     ) {
-      getAllProducts();
+      dispatch(getAllProducts());
     }
   }, [listProducts, getAllProducts, errorMessage]);
   return (
