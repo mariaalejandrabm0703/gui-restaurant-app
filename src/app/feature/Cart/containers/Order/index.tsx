@@ -6,7 +6,6 @@ import { IClient } from '../../models/Cart';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
-import { useDispatch } from 'react-redux';
 
 interface CartProps {
   listProducts: Array<IProductOrder>;
@@ -38,7 +37,6 @@ export const Cart: React.FC<CartProps> = ({
   subtCountProduct,
   setProducts,
 }) => {
-  const dispatch = useDispatch();
 
   const confirmCart = () => {
     console.log('confirmar compra');
@@ -54,12 +52,12 @@ export const Cart: React.FC<CartProps> = ({
       activo: '1',
     };
     if (c.id === 0) {
-      dispatch(setClientAsync(values.identificacion, c));
+      setClientAsync(values.identificacion, c);
     }
   };
 
   const addProduct = (id: number, price: number) => {
-    if (addCountProduct) dispatch(addCountProduct());
+    if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((prod) => prod.id === id);
@@ -83,12 +81,12 @@ export const Cart: React.FC<CartProps> = ({
       prods = [prod];
     }
     if (setProducts) {
-      dispatch(setProducts(prods && prods));
+      setProducts(prods && prods);
     }
   };
 
   const subtProduct = (id: number, price: number) => {
-    if (subtCountProduct) dispatch(subtCountProduct());
+    if (subtCountProduct) subtCountProduct();
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((prod) => prod.id === id);
@@ -120,7 +118,7 @@ export const Cart: React.FC<CartProps> = ({
     }
     if (setProducts) {
       console.log('prods2 ', prods);
-      dispatch(setProducts(prods && prods));
+      setProducts(prods && prods);
     }
   };
 
@@ -145,7 +143,6 @@ export const Cart: React.FC<CartProps> = ({
               listProductMenu={listProductMenu}
               addProduct={addProduct}
               subtProduct={subtProduct}
-              confirmCart={confirmCart}
             />
             <hr></hr>
             <div className="btn-cart">

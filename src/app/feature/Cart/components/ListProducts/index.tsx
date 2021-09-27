@@ -8,15 +8,13 @@ interface ListProdsProps {
   listProductMenu: Array<IProduct>;
   addProduct: (id: number, price: number) => void;
   subtProduct: (id: number, price: number) => void;
-  confirmCart: () => void;
 }
 
 const ListProds: React.FC<ListProdsProps> = ({
   listProducts,
   listProductMenu,
   addProduct,
-  subtProduct,
-  confirmCart,
+  subtProduct,  
 }) => {
   return (
     <div>
@@ -43,10 +41,10 @@ const ListProds: React.FC<ListProdsProps> = ({
         </div>
       </div>
       <div>
-        {listProducts.map((item, index) => {
+        {listProducts.map((item) => {
           return (
             <CartProduct
-              key={index}
+              key={item.id}
               listProductMenu={listProductMenu}
               productOrder={item}
               addProduct={addProduct}
@@ -64,7 +62,6 @@ ListProds.propTypes = {
   listProductMenu: PropTypes.array.isRequired,
   addProduct: PropTypes.func.isRequired,
   subtProduct: PropTypes.func.isRequired,
-  confirmCart: PropTypes.func.isRequired,
 };
 
 export default ListProds;

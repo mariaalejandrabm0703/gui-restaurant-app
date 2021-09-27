@@ -3,7 +3,7 @@ import {
   addCountProduct,
   setProducts,
 } from '../../../core/redux/actions/cart/ActionsCart';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { Istate } from '../../../core/redux/modelo/GeneralState';
 import React from 'react';
@@ -27,10 +27,8 @@ const CardProduct: React.FC<CardProductProps> = ({
   addCountProduct,
   setProducts,
 }) => {
-  const dispatch = useDispatch();
-
   const addProduct = () => {
-    if (addCountProduct) dispatch(addCountProduct());
+    if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((prod) => prod.id === id);
@@ -54,7 +52,7 @@ const CardProduct: React.FC<CardProductProps> = ({
       prods = [prod];
     }
     if (setProducts) {
-      dispatch(setProducts(prods && prods));
+      setProducts(prods && prods);
     }
   };
 

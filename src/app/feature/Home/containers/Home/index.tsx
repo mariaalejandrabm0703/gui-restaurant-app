@@ -3,7 +3,6 @@ import * as React from 'react';
 import { IProduct, IProductOrder, IRanking } from '../../models/Home';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
 import ToastError from '../../../../shared/components/ToastError';
-import { useDispatch } from 'react-redux';
 
 interface HomeProps {
   listProducts: Array<IProduct>;
@@ -24,18 +23,17 @@ export const Home: React.FC<HomeProps> = ({
     getAllProducts,
     getProductsRanking
 }) => {
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (listProducts && listProducts.length === 0 && errorMessage.message === '') {
-      dispatch(getAllProducts());
+      getAllProducts();
     }
 
   }, [listProducts, getAllProducts, errorMessage]);
  
   React.useEffect(() => {
     if (listRanking && listRanking.length === 0 && errorMessage.message === '') {
-      dispatch(getProductsRanking());
+      getProductsRanking();
     }
   }, [listRanking, getProductsRanking]);
   return (

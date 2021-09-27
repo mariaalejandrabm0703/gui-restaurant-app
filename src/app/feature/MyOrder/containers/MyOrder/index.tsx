@@ -4,7 +4,6 @@ import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import { IMyOrder } from '../../models/MyOrder';
 import ToastError from '../../../../shared/components/ToastError';
 import {setOrderAsync} from '../../../../core/redux/actions/order/ActionsOrder';
-import { useDispatch } from 'react-redux';
 
 interface OrderProps {
   myOrder: IMyOrder;
@@ -19,10 +18,9 @@ export const MyOrder: React.FC<OrderProps> = ({
    errorMessage,
    setOrderAsync
 }) => {
-  const dispatch = useDispatch();
   // React.useEffect(() => {
   //   if (myOrder && errorMessage.message === '') {
-  //     dispatch(setOrderAsync(1));
+  //     setOrderAsync(1);
   //   }
   // }, [myOrder]);
 
