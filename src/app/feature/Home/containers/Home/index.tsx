@@ -57,14 +57,15 @@ export const Home: React.FC<HomeProps> = ({
   }, [listRanking, getProductsRanking]);
 
   const handleSearch = (values: IFilters) => {
-
     let products: Array<IProduct> = [...listProducts];
     // buscar por descripción
     if (values.description !== '') {
       products = products.filter(
         (item) =>
           values.description &&
-          (item.descripcion.toUpperCase() == values.description.toUpperCase())
+          item.descripcion
+            .toUpperCase()
+            .includes(values.description.toUpperCase())
       );
     }
 
@@ -75,7 +76,9 @@ export const Home: React.FC<HomeProps> = ({
 
     // buscar por precio
     if (values.price !== 0) {
-      products = products.filter((item) => values.price && (item.precio <= values.price));
+      products = products.filter(
+        (item) => values.price && item.precio <= values.price
+      );
     }
     setProductFilters(products);
   };
