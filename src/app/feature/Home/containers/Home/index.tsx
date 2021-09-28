@@ -55,22 +55,28 @@ export const Home: React.FC<HomeProps> = ({
       getProductsRanking();
     }
   }, [listRanking, getProductsRanking]);
+
+  const handleSearch = () => {
+    console.log('buscar');
+  };
+
   return (
     <div className="container">
       <ToastError />
       <h1>Home</h1>
       <div className="row m-3">
         <div className="col-6">
-          <p>Busca tu producto:</p>
-          <FindProducts />
+          <h5>Busca tu producto:</h5>
+          <FindProducts handleSearch={handleSearch} />
         </div>
         <div className="col-6">
-          <p>Elección de los más vendidos:</p>
+          <h5>Elección de los más vendidos:</h5>
           <RankingProducts listRanking={listRanking} />
         </div>
       </div>
       <div className="row m-3">
         <div className="col-12">
+          <h5>Tu resutado:</h5>
           <ManageShowProducts />
         </div>
       </div>
@@ -81,7 +87,7 @@ export const Home: React.FC<HomeProps> = ({
 Home.propTypes = {
   listProducts: PropTypes.array.isRequired,
   listRanking: PropTypes.array.isRequired,
-  listProductsFilter: PropTypes.array.isRequired,  
+  listProductsFilter: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   getAllProducts: PropTypes.func.isRequired,
   getProductsRanking: PropTypes.func.isRequired,

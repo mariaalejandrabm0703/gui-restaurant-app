@@ -69,7 +69,7 @@ const CardProduct: React.FC<CardProductProps> = ({
         </div>
         {showAdd ? (
           <div className="btn-cart">
-            <a type="submit" onClick={addProduct} className="btn btn-primary">
+            <a type="submit" onClick={addProduct} className="btn btn-warning">
               Agregar <i className="fas fa-shopping-cart"></i>
             </a>
           </div>

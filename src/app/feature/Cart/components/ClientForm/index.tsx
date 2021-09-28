@@ -103,7 +103,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                 </div>
               </div>
               <div className="d-flex justify-content-between mt-3">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-warning">
                   Guardar <i className="fas fa-user"></i>
                 </button>                
               </div>

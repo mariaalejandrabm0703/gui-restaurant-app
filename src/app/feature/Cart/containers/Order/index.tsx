@@ -7,6 +7,7 @@ import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import { IMyOrderReg } from 'app/feature/MyOrder/models/MyOrder';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
+import { toast } from 'react-toastify';
 import { useHistory } from 'react-router';
 
 interface CartProps {
@@ -50,6 +51,11 @@ export const Cart: React.FC<CartProps> = ({
   const history = useHistory();
 
   const confirmCart = () => {
+    if (client.identificacion === '') {
+      console.log('no cliente');
+      toast.error('No se ha establecido un cliente.');
+      return;
+    }
     let pedido: IMyOrderReg;
     if (client.id !== 0) {
       const precio = listProducts
@@ -64,7 +70,7 @@ export const Cart: React.FC<CartProps> = ({
       };
       setOrderAsync(pedido);
     }
-    history.push('/myOrder');
+    history.push('/myOrder');    
   };
 
   const handleChangeDate = (e: React.FormEvent<HTMLInputElement>) => {
@@ -157,7 +163,7 @@ export const Cart: React.FC<CartProps> = ({
     deleteCountProduct();
     deleteClient();
   };
-  
+
   return (
     <div className="container">
       <ToastError />
@@ -165,8 +171,8 @@ export const Cart: React.FC<CartProps> = ({
         <h1>Mis compras</h1>
 
         {listProducts.length > 0 ? (
-          <div >
-            <div style={{textAlign: 'right'}}>
+          <div>
+            <div style={{ textAlign: 'right' }}>
               <button
                 type="submit"
                 onClick={deleteCart}
@@ -206,7 +212,7 @@ export const Cart: React.FC<CartProps> = ({
               <a
                 type="submit"
                 onClick={confirmCart}
-                className="btn btn-primary"
+                className="btn btn-warning"
               >
                 Confirmar compra <i className="fas fa-check-circle"></i>
               </a>

@@ -29,15 +29,15 @@ export interface IFilters{
   /**
    * Descripción del producto
    */
-  description: string,
+  description?: string,
   /**
    * Categoría del producto
    */
-  category: string,
+  category?: string,
   /**
    * Precio del producto
    */
-  price: number,
+  price?: number,
 }
 
 export interface IProductOrderRegistred {

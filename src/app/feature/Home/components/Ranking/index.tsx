@@ -12,7 +12,7 @@ const RankingProducts: React.FC<RankingProductsProps> = ({ listRanking }) => {
       <div>
         <table className="table table-striped table-sm">
           <thead className="thead-dark">
-            <tr>
+            <tr className="bg-warning">
               <th scope="col">#</th>
               <th scope="col">Producto</th>
               <th scope="col">Categoría</th>

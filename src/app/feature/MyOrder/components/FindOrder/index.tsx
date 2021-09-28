@@ -51,7 +51,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
                   ) : null}
                 </div>
                 <div className="col-12 col-md-3 d-flex align-items-end ">
-                  <button type="submit" className="btn btn-primary ml-3">
+                  <button type="submit" className="btn btn-warning ml-3">
                     <i className="fas fa-search"></i>
                   </button>
                 </div>
