@@ -1,23 +1,40 @@
 import * as PropTypes from 'prop-types';
 import { IMyOrder, IMyOrderReg } from '../../models/MyOrder';
 import React, { useEffect, useState } from 'react';
+import {
+  setClient,
+  setCountProduct,
+  setProducts,
+} from '../../../../core/redux/actions/cart/ActionsCart';
+import { IClient } from 'app/feature/Cart/models/Cart';
 import { IProduct } from 'app/feature/Home/models/Home';
+import { IProductOrder } from '../../../Home/models/Home';
 import { Istate } from 'app/core/redux/modelo/GeneralState';
 import { ManageCardProduct } from 'app/shared/components/cardProduct/cardProduct';
 import { connect } from 'react-redux';
-import { setConfigOrderAsync } from '../../../../core/redux/actions/order/ActionsOrder';
-import { MyOrder } from '../../containers/MyOrder';
+import {
+  setConfigOrderAsync,
+  setOrder,
+} from '../../../../core/redux/actions/order/ActionsOrder';
 
 interface ShowInfoOrderProps {
   myOrder: IMyOrder;
   listProducts: Array<IProduct>;
   setConfigOrderAsync: (orderSet: IMyOrder, orderEdit: IMyOrderReg) => void;
+  setClient: (client: IClient) => void;
+  setCountProduct: (count: number) => void;
+  setProducts: (products: Array<IProductOrder>) => void;
+  setOrder: (pedido: IMyOrder) => void;
 }
 
 const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
   myOrder,
   listProducts,
   setConfigOrderAsync,
+  setClient,
+  setCountProduct,
+  setProducts,
+  setOrder,
 }) => {
   const [productos, setproductos] = useState([
     { id: 0, desc: '', price: 0, img: '', cantidad: 0 },
@@ -41,11 +58,43 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
   }, [myOrder]);
 
   const handleSet = () => {
-    console.log('editar');
+    const productsOrderCart = Array<IProductOrder>();
+    let cantidad: number = 0;
+    for (const item of myOrder.pedidosProductos) {
+      cantidad = cantidad + item.cantidad;
+    }
+    setCountProduct(cantidad);
+
+    for (const item of myOrder.pedidosProductos) {
+      productsOrderCart.push({
+        producto: item.producto.id,
+        precio: item.precio,
+        cantidad: item.cantidad,
+      });
+    }
+    setProducts(productsOrderCart);
+
+    const client: IClient = myOrder.cliente;
+    setClient(client);
+    // borrar store myOrder
+    setOrder({
+      id: 0,
+      fechaEntrega: '',
+      precio: 0,
+      activo: '',
+      pedidosProductos: [],
+      cliente: {
+        id: 0,
+        nombre: '',
+        identificacion: '',
+        telefono: '',
+        email: '',
+        activo: '',
+      },
+    });
   };
 
   const handleCancel = () => {
-    console.log('cancelar');
     // activo = 0 cero
     const myOrderSet = { ...myOrder, activo: '0' };
 
@@ -63,8 +112,6 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
       cliente: myOrder.cliente.id,
       productos: productosOrder,
     };
-    console.log('myOrderSet', myOrderSet);
-    console.log('myOrderReg', myOrderReg);
     setConfigOrderAsync(myOrderSet, myOrderReg);
   };
 
@@ -134,6 +181,10 @@ ShowInfoOrder.propTypes = {
     }).isRequired,
   }).isRequired,
   setConfigOrderAsync: PropTypes.func.isRequired,
+  setClient: PropTypes.func.isRequired,
+  setCountProduct: PropTypes.func.isRequired,
+  setProducts: PropTypes.func.isRequired,
+  setOrder: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state: Istate) => {
@@ -142,4 +193,10 @@ const mapStateToProps = (state: Istate) => {
   };
 };
 
-export default connect(mapStateToProps, { setConfigOrderAsync })(ShowInfoOrder);
+export default connect(mapStateToProps, {
+  setConfigOrderAsync,
+  setClient,
+  setCountProduct,
+  setProducts,
+  setOrder,
+})(ShowInfoOrder);
