@@ -38,7 +38,7 @@ export const Menu: React.FC<MenuProps> = ({
     }
   }, [listProducts, getAllProducts, errorMessage]);
   return (
-    <div className="container card">
+    <div className="container">
       <ToastError />
       <h1>Menú</h1>
       <div className="m-2">

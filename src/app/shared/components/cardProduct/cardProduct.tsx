@@ -63,18 +63,26 @@ const CardProduct: React.FC<CardProductProps> = ({
   return (
     <div className="card card-div">
       <img src={img} alt={description} className="img-fluid img-cart"></img>
-      <div className="card-body">
-        <div className="card-content">
-          <p className="card-title">{description}</p>
-          <p className="card-text">{currencyFormat(price)}</p>
-        </div>
-        {showAdd ? (
-          <div className="btn-cart">
-            <a type="submit" onClick={addProduct} className="btn btn-warning">
-              Agregar <i className="fas fa-shopping-cart"></i>
-            </a>
+      <div className="card-body d-flex">
+        <div className="row">
+          <div className="col-12">
+            <p className="card-title">{description}</p>
+            <p className="card-text">{currencyFormat(price)}</p>
           </div>
-        ) : null}
+          {showAdd ? (
+            <div className="col-12">
+              <div className="btn-cart card-buton">
+                <a
+                  type="submit"
+                  onClick={addProduct}
+                  className="btn btn-warning card-buton-item"
+                >
+                  Agregar <i className="fas fa-shopping-cart"></i>
+                </a>
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

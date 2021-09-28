@@ -11,6 +11,7 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <NavigationHeader />
+      <hr></hr>
       <Switch>
         <Route path="/" exact component={HomeRouter} />
         <Route path="/myOrder" component={MyOrderRouter} />
@@ -18,6 +19,7 @@ export const AppRouter = () => {
         <Route path="/cart" component={CartRouter}/>
         <Redirect to="/" />
       </Switch>
+      
     </BrowserRouter>
   );
 };
