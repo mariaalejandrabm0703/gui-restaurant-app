@@ -1,8 +1,13 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { IProduct, IProductOrder, IRanking } from '../../models/Home';
+import FindProducts from '../../components/FindProducts/index';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
+import RankingProducts from '../../components/Ranking/index';
+import ShowProducts from '../../components/ShowProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
+
+
 
 interface HomeProps {
   listProducts: Array<IProduct>;
@@ -15,24 +20,30 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({
-    listProducts,
-    listRanking,
-    listProductsCart,
-    isLoading,
-    errorMessage,
-    getAllProducts,
-    getProductsRanking
+  listProducts,
+  listRanking,
+  listProductsCart,
+  isLoading,
+  errorMessage,
+  getAllProducts,
+  getProductsRanking,
 }) => {
-
   React.useEffect(() => {
-    if (listProducts && listProducts.length === 0 && errorMessage.message === '') {
+    if (
+      listProducts &&
+      listProducts.length === 0 &&
+      errorMessage.message === ''
+    ) {
       getAllProducts();
     }
-
   }, [listProducts, getAllProducts, errorMessage]);
- 
+
   React.useEffect(() => {
-    if (listRanking && listRanking.length === 0 && errorMessage.message === '') {
+    if (
+      listRanking &&
+      listRanking.length === 0 &&
+      errorMessage.message === ''
+    ) {
       getProductsRanking();
     }
   }, [listRanking, getProductsRanking]);
@@ -40,21 +51,34 @@ export const Home: React.FC<HomeProps> = ({
     <div className="container">
       <ToastError />
       <h1>Home</h1>
-      <p>{listProducts.length}</p>
-      <p>{listRanking.length}</p>
+      <div className="row m-3">
+        <div className="col-6">
+          <p>Busca tu producto:</p>
+          <FindProducts />
+        </div>
+        <div className="col-6">
+          <p>Elección de los más vendidos:</p>
+          <RankingProducts listRanking={listRanking}/>
+        </div>
+      </div>
+      <div className="row m-3">
+        <div className="col-12">
+          <ShowProducts />
+        </div>
+      </div>
     </div>
   );
 };
 
 Home.propTypes = {
-    listProducts: PropTypes.array.isRequired,
-    listRanking: PropTypes.array.isRequired,
-    listProductsCart: PropTypes.array.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    getAllProducts: PropTypes.func.isRequired,
-    getProductsRanking: PropTypes.func.isRequired,
-    errorMessage: PropTypes.shape({
-      message: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-    }).isRequired,
-  };
+  listProducts: PropTypes.array.isRequired,
+  listRanking: PropTypes.array.isRequired,
+  listProductsCart: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  getAllProducts: PropTypes.func.isRequired,
+  getProductsRanking: PropTypes.func.isRequired,
+  errorMessage: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
+};

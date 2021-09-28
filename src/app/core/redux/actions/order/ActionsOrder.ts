@@ -17,6 +17,7 @@ import {
 import { IErrorToast } from '../../modelo/IStateMain';
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { OrderRepository } from '../../../api/order.repository';
+import { setProductsRanAsync } from '../ranking/ActionsRanking';
 const errorDefault = { message: '', type: '' };
 
 export function defaultState(pedido: IMyOrder): IActionTypesOrder {
@@ -65,6 +66,7 @@ export function setOrderAsync(order: IMyOrderReg) {
         dispacth(setProducts(p));
         dispacth(deleteCountProduct());
         dispacth(deleteClient());
+        dispacth(setProductsRanAsync());
         return dispacth(setOrder(response.data[0]));
       })
       .catch((err) => {
