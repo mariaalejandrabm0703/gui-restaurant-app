@@ -5,4 +5,5 @@ export interface IStateCart {
   listProductsCart: IProductOrder[];
   count: number;
   client: IClient;
+  modo: string;
 }

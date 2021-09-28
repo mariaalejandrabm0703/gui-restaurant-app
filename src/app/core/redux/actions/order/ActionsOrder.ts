@@ -55,10 +55,16 @@ export function setError(error: IErrorToast): IActionTypesMain {
   };
 }
 
-export function setOrderAsync(order: IMyOrderReg) {
+export function setOrderAsync(order: IMyOrderReg, modo: string, id: number) {
   return async function (dispacth: any) {
     const p = Array<IProductOrder>();
     dispacth(isLoading(true));
+    if (modo !== 'registry') {
+      dispacth(setProducts(p));
+      dispacth(deleteCountProduct());
+      dispacth(deleteClient());
+      return dispacth(setConfigOrderAsync(id, order));
+    }
     await OrderRepository.registryOrder(order)
       .then((response: any) => {
         dispacth(isLoading(false));
@@ -137,15 +143,15 @@ export function searchOrderAsync(id: number) {
   };
 }
 
-export function setConfigOrderAsync(orderSet: IMyOrder, orderEdit: IMyOrderReg) {
+export function setConfigOrderAsync(id: number, orderEdit: IMyOrderReg) {
   return async function (dispacth: any) {
     const p = Array<IProductOrder>();
     dispacth(isLoading(true));
-    await OrderRepository.editOrderById(orderSet.id,orderEdit)
+    await OrderRepository.editOrderById(id, orderEdit)
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        return dispacth(setOrder(orderSet));
+        return dispacth(setOrder(response.data[0]));
       })
       .catch((err) => {
         dispacth(isLoading(false));

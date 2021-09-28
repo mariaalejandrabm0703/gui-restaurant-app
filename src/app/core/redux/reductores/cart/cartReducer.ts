@@ -3,6 +3,8 @@ import {
   DELETE_CLIENT,
   DELETE_COUNT_PRODUCTS,
   IActionTypesCart,
+  MODO_EDIT,
+  MODO_REGISTER,
   SET_CLIENT,
   SET_COUNT_PRODUCTS,
   SET_PRODUCTS,
@@ -22,6 +24,7 @@ const initialState: IStateCart = {
     email: '',
     activo: '',
   },
+  modo: 'registry',
 };
 
 export default function (
@@ -79,6 +82,18 @@ export default function (
           email: '',
           activo: '',
         },
+      };
+    }
+    case MODO_REGISTER: {
+      return {
+        ...state,
+        modo: 'registry'
+      };
+    }
+    case MODO_EDIT: {
+      return {
+        ...state,
+        modo: 'edit'
       };
     }
     default:

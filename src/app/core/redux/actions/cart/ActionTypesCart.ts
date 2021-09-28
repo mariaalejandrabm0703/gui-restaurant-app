@@ -12,6 +12,9 @@ export const SET_COUNT_PRODUCTS = '[CART] SETEAR_CONTAR_PRODUCTOS';
 export const SET_CLIENT = '[CART] SETEAR_CLIENTE';
 export const DELETE_CLIENT = '[CART] BORRAR_CLIENTE';
 
+export const MODO_REGISTER = '[CART] REGISTRAR_PEDIDO';
+export const MODO_EDIT = '[CART] EDITAR_PEDIDO';
+
 interface IDefaultState {
   type: typeof DEFAULT_STATE;
   payload: number;
@@ -52,6 +55,16 @@ interface IDeleteClientAction {
   payload: IClient;
 }
 
+interface setModoReg {
+  type: typeof MODO_REGISTER;
+  payload: String;
+}
+
+interface setModoEdit {
+  type: typeof MODO_EDIT;
+  payload: String;
+}
+
 export type IActionTypesCart =
   | IDefaultState
   | ISetProductsAction
@@ -60,4 +73,6 @@ export type IActionTypesCart =
   | IDeletetCountAction
   | ISetClientAction
   | IDeleteClientAction
-  | ISetCountAction;
+  | ISetCountAction
+  | setModoReg
+  | setModoEdit;

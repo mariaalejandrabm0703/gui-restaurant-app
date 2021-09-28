@@ -4,6 +4,8 @@ import {
   DELETE_CLIENT,
   DELETE_COUNT_PRODUCTS,
   IActionTypesCart,
+  MODO_EDIT,
+  MODO_REGISTER,
   SET_CLIENT,
   SET_COUNT_PRODUCTS,
   SET_PRODUCTS,
@@ -188,5 +190,19 @@ export function setClientAsync(id: string, client: IClient) {
           })
         );
       });
+  };
+}
+
+export function setModoEdit(): IActionTypesCart {
+  return {
+    type: MODO_EDIT,
+    payload: '',
+  };
+}
+
+export function setModoReg(): IActionTypesCart {
+  return {
+    type: MODO_REGISTER,
+    payload: '',
   };
 }

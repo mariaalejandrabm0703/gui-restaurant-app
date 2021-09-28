@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import {
   setClient,
   setCountProduct,
+  setModoEdit,
   setProducts,
 } from '../../../../core/redux/actions/cart/ActionsCart';
 import {
@@ -22,11 +23,12 @@ import { useHistory } from 'react-router';
 interface ShowInfoOrderProps {
   myOrder: IMyOrder;
   listProducts: Array<IProduct>;
-  setConfigOrderAsync: (orderSet: IMyOrder, orderEdit: IMyOrderReg) => void;
+  setConfigOrderAsync: (id: number, orderEdit: IMyOrderReg) => void;
   setClient: (client: IClient) => void;
   setCountProduct: (count: number) => void;
   setProducts: (products: Array<IProductOrder>) => void;
   setOrder: (pedido: IMyOrder) => void;
+  setModoEdit: () => void;
 }
 
 const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
@@ -37,6 +39,7 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
   setCountProduct,
   setProducts,
   setOrder,
+  setModoEdit,
 }) => {
   const [productos, setproductos] = useState([
     { id: 0, desc: '', price: 0, img: '', cantidad: 0 },
@@ -81,27 +84,11 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
     const client: IClient = myOrder.cliente;
     setClient(client);
     // borrar store myOrder
-    setOrder({
-      id: 0,
-      fechaEntrega: '',
-      precio: 0,
-      activo: '',
-      pedidosProductos: [],
-      cliente: {
-        id: 0,
-        nombre: '',
-        identificacion: '',
-        telefono: '',
-        email: '',
-        activo: '',
-      },
-    });
+    setModoEdit();
     history.push('/cart');
   };
 
   const handleCancel = () => {
-    // activo = 0 cero
-    const myOrderSet = { ...myOrder, activo: '0' };
 
     const productosOrder = myOrder.pedidosProductos.map((item) => {
       return {
@@ -117,7 +104,7 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
       cliente: myOrder.cliente.id,
       productos: productosOrder,
     };
-    setConfigOrderAsync(myOrderSet, myOrderReg);
+    setConfigOrderAsync(myOrder.id, myOrderReg);
   };
 
   return (
@@ -190,6 +177,7 @@ ShowInfoOrder.propTypes = {
   setCountProduct: PropTypes.func.isRequired,
   setProducts: PropTypes.func.isRequired,
   setOrder: PropTypes.func.isRequired,
+  setModoEdit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state: Istate) => {
@@ -204,4 +192,5 @@ export default connect(mapStateToProps, {
   setCountProduct,
   setProducts,
   setOrder,
+  setModoEdit,
 })(ShowInfoOrder);

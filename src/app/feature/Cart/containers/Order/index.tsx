@@ -1,10 +1,10 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { IMyOrder, IMyOrderReg } from 'app/feature/MyOrder/models/MyOrder';
 import { IProduct, IProductOrder } from '../../../Home/models/Home';
 import ClientForm from '../../components/ClientForm/index';
 import { IClient } from '../../models/Cart';
 import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
-import { IMyOrderReg } from 'app/feature/MyOrder/models/MyOrder';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
 import { toast } from 'react-toastify';
@@ -13,6 +13,8 @@ import { useHistory } from 'react-router';
 interface CartProps {
   listProducts: Array<IProductOrder>;
   client: IClient;
+  modo: string;
+  myOrder: IMyOrder;
   listProductMenu: Array<IProduct>;
   isLoading: boolean;
   errorMessage: IErrorToast;
@@ -20,9 +22,11 @@ interface CartProps {
   addCountProduct: () => void;
   subtCountProduct: () => void;
   setProducts: (products: Array<IProductOrder>) => void;
-  setOrderAsync: (pedido: IMyOrderReg) => void;
+  setOrderAsync: (pedido: IMyOrderReg, modo: string, id: number) => void;
   deleteCountProduct: () => void;
   deleteClient: () => void;
+  setModoReg: () => void;
+  setConfigOrderAsync: (id: number, orderEdit: IMyOrderReg) => void;
 }
 
 const initialValues = {
@@ -36,6 +40,8 @@ export const Cart: React.FC<CartProps> = ({
   listProducts,
   listProductMenu,
   client,
+  modo,
+  myOrder,
   isLoading,
   errorMessage,
   setClientAsync,
@@ -45,6 +51,8 @@ export const Cart: React.FC<CartProps> = ({
   setOrderAsync,
   deleteCountProduct,
   deleteClient,
+  setModoReg,
+  setConfigOrderAsync,
 }) => {
   const [date, setDate] = React.useState('01/10/2021 12:00:00');
 
@@ -67,9 +75,10 @@ export const Cart: React.FC<CartProps> = ({
         productos: listProducts,
         cliente: client.id!,
       };
-      setOrderAsync(pedido);
+      setOrderAsync(pedido, modo, myOrder.id);
+      history.push('/myOrder');
+      setModoReg();
     }
-    history.push('/myOrder');    
   };
 
   const handleChangeDate = (e: React.FormEvent<HTMLInputElement>) => {
@@ -236,6 +245,22 @@ Cart.propTypes = {
     activo: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
   }).isRequired,
+  modo: PropTypes.string.isRequired,
+  myOrder: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    fechaEntrega: PropTypes.string.isRequired,
+    precio: PropTypes.number.isRequired,
+    activo: PropTypes.string.isRequired,
+    pedidosProductos: PropTypes.array.isRequired,
+    cliente: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      nombre: PropTypes.string.isRequired,
+      identificacion: PropTypes.string.isRequired,
+      telefono: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      activo: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.shape({
     message: PropTypes.string.isRequired,
@@ -248,4 +273,6 @@ Cart.propTypes = {
   setOrderAsync: PropTypes.func.isRequired,
   deleteCountProduct: PropTypes.func.isRequired,
   deleteClient: PropTypes.func.isRequired,
+  setModoReg: PropTypes.func.isRequired,
+  setConfigOrderAsync: PropTypes.func.isRequired,
 };
