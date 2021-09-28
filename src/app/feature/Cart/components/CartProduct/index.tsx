@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types';
 import { IProduct, IProductOrder } from 'app/feature/Home/models/Home';
 import React, { useState } from 'react';
+import { currencyFormat } from 'app/shared/utils/utils';
 
 interface CartProductProps {
   productOrder: IProductOrder;
@@ -51,7 +52,7 @@ const CartProduct: React.FC<CartProductProps> = ({
             <p>{productCart.descripcion}</p>
           </div>
           <div className="col-sm">
-            <p>${productCart.precio * productOrder.cantidad}</p>
+            <p>{currencyFormat(productCart.precio * productOrder.cantidad)}</p>
           </div>
           <div className="col-sm">
             <p>{productOrder.cantidad}</p>

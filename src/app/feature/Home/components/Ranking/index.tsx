@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types';
 import { IRanking } from '../../models/Home';
 import React from 'react';
+import { currencyFormat } from '../../../../shared/utils/utils';
 
 interface RankingProductsProps {
   listRanking: Array<IRanking>;
@@ -29,7 +30,7 @@ const RankingProducts: React.FC<RankingProductsProps> = ({ listRanking }) => {
                     <th scope="row">{index + 1}</th>
                     <td>{item.descripcion}</td>
                     <td>{item.categoria}</td>
-                    <td> ${item.precio}</td>
+                    <td>{currencyFormat(item.precio)}</td>
                     <td>{item.cantidad}</td>
                   </tr>
                 );

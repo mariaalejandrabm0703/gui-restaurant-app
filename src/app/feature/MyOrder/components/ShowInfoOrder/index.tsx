@@ -16,6 +16,7 @@ import { IProductOrder } from '../../../Home/models/Home';
 import { Istate } from 'app/core/redux/modelo/GeneralState';
 import { ManageCardProduct } from 'app/shared/components/cardProduct/cardProduct';
 import { connect } from 'react-redux';
+import { currencyFormat } from 'app/shared/utils/utils';
 import { useHistory } from 'react-router';
 
 interface ShowInfoOrderProps {
@@ -138,7 +139,7 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
       </div>
       <div>
         <p>Estado: {myOrder.activo === '1' ? 'Activo' : 'Cancelado'}</p>
-        <p>Precio: ${myOrder.precio} </p>
+        <p>Precio: {currencyFormat(myOrder.precio)} </p>
         <p>Fecha de entrega: {myOrder.fechaEntrega} </p>
       </div>
       <div>

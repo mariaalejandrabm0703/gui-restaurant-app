@@ -7,6 +7,7 @@ import { IProductOrder } from 'app/feature/Home/models/Home';
 import { Istate } from '../../../core/redux/modelo/GeneralState';
 import React from 'react';
 import { connect } from 'react-redux';
+import { currencyFormat } from 'app/shared/utils/utils';
 
 interface CardProductProps {
   id: number;
@@ -65,7 +66,7 @@ const CardProduct: React.FC<CardProductProps> = ({
       <div className="card-body">
         <div className="card-content">
           <p className="card-title">{description}</p>
-          <p className="card-text">${price}</p>
+          <p className="card-text">{currencyFormat(price)}</p>
         </div>
         {showAdd ? (
           <div className="btn-cart">
