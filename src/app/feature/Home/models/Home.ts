@@ -25,6 +25,29 @@ export interface IProduct {
   img: string;
 }
 
+export interface IProductOrderRegistred {
+  /**
+   * Identificador del producto
+   */
+  id: number;
+ /**
+   * Cantidad del producto
+   */
+  cantidad: number;
+  /**
+   * Precio del producto
+   */
+  precio: number;
+  /**
+   * Estado del producto
+   */
+  activo: string;
+  /**
+   * Producto del pedidoProducto
+   */
+  producto: IProduct;
+}
+
 export interface IProductOrder {
   /**
    * Identificador del producto

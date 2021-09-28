@@ -65,7 +65,7 @@ export function setOrderAsync(order: IMyOrderReg) {
         dispacth(setProducts(p));
         dispacth(deleteCountProduct());
         dispacth(deleteClient());
-        return dispacth(setOrder(response.data));
+        return dispacth(setOrder(response.data[0]));
       })
       .catch((err) => {
         dispacth(isLoading(false));
@@ -104,7 +104,7 @@ export function searchOrderAsync(id: number) {
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        return dispacth(setOrder(response.data));
+        return dispacth(setOrder(response.data[0]));
       })
       .catch((err) => {
         dispacth(isLoading(false));
@@ -129,6 +129,28 @@ export function searchOrderAsync(id: number) {
               email: '',
               activo: '',
             },
+          })
+        );
+      });
+  };
+}
+
+export function setConfigOrderAsync(orderSet: IMyOrder, orderEdit: IMyOrderReg) {
+  return async function (dispacth: any) {
+    const p = Array<IProductOrder>();
+    dispacth(isLoading(true));
+    await OrderRepository.editOrderById(orderSet.id,orderEdit)
+      .then((response: any) => {
+        dispacth(isLoading(false));
+        dispacth(setError(errorDefault));
+        return dispacth(setOrder(orderSet));
+      })
+      .catch((err) => {
+        dispacth(isLoading(false));
+        dispacth(
+          setError({
+            type: 'order',
+            message: 'Error al editar el pedido. Por favor, intente nuevamente',
           })
         );
       });
