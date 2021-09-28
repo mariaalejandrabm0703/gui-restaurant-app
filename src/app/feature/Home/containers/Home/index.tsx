@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IProduct, IProductOrder, IRanking } from '../../models/Home';
+import { IFilters, IProduct, IProductOrder, IRanking } from '../../models/Home';
 import FindProducts from '../../components/FindProducts/index';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
 import { ManageShowProducts } from '../../components/ShowProducts/index';
@@ -56,8 +56,28 @@ export const Home: React.FC<HomeProps> = ({
     }
   }, [listRanking, getProductsRanking]);
 
-  const handleSearch = () => {
-    console.log('buscar');
+  const handleSearch = (values: IFilters) => {
+
+    let products: Array<IProduct> = [...listProducts];
+    // buscar por descripción
+    if (values.description !== '') {
+      products = products.filter(
+        (item) =>
+          values.description &&
+          (item.descripcion.toUpperCase() == values.description.toUpperCase())
+      );
+    }
+
+    // buscar por categoría
+    if (values.category !== '') {
+      products = products.filter((item) => item.categoria === values.category);
+    }
+
+    // buscar por precio
+    if (values.price !== 0) {
+      products = products.filter((item) => values.price && (item.precio <= values.price));
+    }
+    setProductFilters(products);
   };
 
   return (

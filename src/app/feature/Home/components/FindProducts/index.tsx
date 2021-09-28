@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import { IFilters } from '../../models/Home';
 import React from 'react';
 interface FindProductsProps {
-  handleSearch: () => void;
+  handleSearch: (values: IFilters) => void;
 }
 
 const initialValues = {
@@ -61,7 +61,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                 </div>
                 <div className="col-12 col-md-6">
                   <label htmlFor="price" className="col-12 col-form-label">
-                    Precio:
+                    Precio (max):
                   </label>
                   <Field
                     name="price"          

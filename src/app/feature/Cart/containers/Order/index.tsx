@@ -52,7 +52,6 @@ export const Cart: React.FC<CartProps> = ({
 
   const confirmCart = () => {
     if (client.identificacion === '') {
-      console.log('no cliente');
       toast.error('No se ha establecido un cliente.');
       return;
     }
