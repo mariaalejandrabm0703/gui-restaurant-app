@@ -20,7 +20,7 @@ interface CardProductProps {
   showAdd: boolean;
 }
 
-const CardProduct: React.FC<CardProductProps> = ({
+export const CardProduct: React.FC<CardProductProps> = ({
   id,
   description,
   price,
