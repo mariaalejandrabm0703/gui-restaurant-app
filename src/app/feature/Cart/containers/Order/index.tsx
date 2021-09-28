@@ -7,6 +7,7 @@ import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
 import { IMyOrderReg } from 'app/feature/MyOrder/models/MyOrder';
 import ListProds from '../../components/ListProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
+import { useHistory } from 'react-router';
 
 interface CartProps {
   listProducts: Array<IProductOrder>;
@@ -18,7 +19,9 @@ interface CartProps {
   addCountProduct: () => void;
   subtCountProduct: () => void;
   setProducts: (products: Array<IProductOrder>) => void;
-  setOrderAsync: (pedido:IMyOrderReg) => void;
+  setOrderAsync: (pedido: IMyOrderReg) => void;
+  deleteCountProduct: () => void;
+  deleteClient: () => void;
 }
 
 const initialValues = {
@@ -39,13 +42,19 @@ export const Cart: React.FC<CartProps> = ({
   subtCountProduct,
   setProducts,
   setOrderAsync,
+  deleteCountProduct,
+  deleteClient,
 }) => {
   const [date, setDate] = React.useState('01/10/2021 12:00:00');
+
+  const history = useHistory();
 
   const confirmCart = () => {
     let pedido: IMyOrderReg;
     if (client.id !== 0) {
-      const  precio = listProducts.map(item => item.precio*item.cantidad).reduce((previousValue, currentValue) => previousValue + currentValue);
+      const precio = listProducts
+        .map((item) => item.precio * item.cantidad)
+        .reduce((previousValue, currentValue) => previousValue + currentValue);
       pedido = {
         fechaEntrega: date,
         precio: precio,
@@ -54,7 +63,8 @@ export const Cart: React.FC<CartProps> = ({
         cliente: client.id!,
       };
       setOrderAsync(pedido);
-    }    
+    }
+    history.push('/myOrder');
   };
 
   const handleChangeDate = (e: React.FormEvent<HTMLInputElement>) => {
@@ -88,7 +98,8 @@ export const Cart: React.FC<CartProps> = ({
     }
 
     // guardar nuevo prods
-    let prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
+    let prods =
+      listProducts && listProducts.filter((prod) => prod.producto !== id);
     const prod: IProductOrder = {
       producto: id,
       cantidad: quantity + 1,
@@ -119,9 +130,11 @@ export const Cart: React.FC<CartProps> = ({
     // guardar los prods
     let prods;
     if (quantity - 1 === 0 || quantity === 0) {
-      prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
+      prods =
+        listProducts && listProducts.filter((prod) => prod.producto !== id);
     } else {
-      prods = listProducts && listProducts.filter((prod) => prod.producto !== id);
+      prods =
+        listProducts && listProducts.filter((prod) => prod.producto !== id);
       const prod: IProductOrder = {
         producto: id,
         cantidad: quantity - 1,
@@ -138,19 +151,37 @@ export const Cart: React.FC<CartProps> = ({
     }
   };
 
+  const deleteCart = () => {
+    const p = Array<IProductOrder>();
+    setProducts(p);
+    deleteCountProduct();
+    deleteClient();
+  };
+  
   return (
     <div className="container">
       <ToastError />
       <div className="">
         <h1>Mis compras</h1>
+
         {listProducts.length > 0 ? (
-          <div>
+          <div >
+            <div style={{textAlign: 'right'}}>
+              <button
+                type="submit"
+                onClick={deleteCart}
+                className="btn btn-danger"
+              >
+                Vaciar <i className="fas fa-shopping-cart"></i>
+              </button>
+            </div>
             {client.id !== 0 ? (
               <h6 className="color-blue-text">Bienvenido {client.nombre}</h6>
             ) : (
               <ClientForm
                 initialValues={initialValues}
                 handleSubmit={handleSubmit}
+                deleteCart={deleteCart}
               />
             )}
             <hr></hr>
@@ -210,4 +241,6 @@ Cart.propTypes = {
   subtCountProduct: PropTypes.func.isRequired,
   setProducts: PropTypes.func.isRequired,
   setOrderAsync: PropTypes.func.isRequired,
+  deleteCountProduct: PropTypes.func.isRequired,
+  deleteClient: PropTypes.func.isRequired,
 };

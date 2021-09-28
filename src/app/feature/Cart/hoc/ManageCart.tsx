@@ -1,5 +1,7 @@
 import {
   addCountProduct,
+  deleteClient,
+  deleteCountProduct,
   setClientAsync,
   setProducts,
   subtCountProduct,
@@ -25,4 +27,6 @@ export const ManageCart = connect(mapStateToProps, {
   subtCountProduct,
   setProducts,
   setOrderAsync,
+  deleteCountProduct,
+  deleteClient,
 })(Cart);

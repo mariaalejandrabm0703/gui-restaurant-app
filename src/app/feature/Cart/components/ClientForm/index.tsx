@@ -7,6 +7,7 @@ import React from 'react';
 interface ClientFormProps {
   initialValues: IClient;
   handleSubmit: (values: IClient) => void;
+  deleteCart: () => void;
 }
 
 const validationSchema = Yup.object().shape<IClient>({
@@ -24,7 +25,9 @@ const validationSchema = Yup.object().shape<IClient>({
 const ClientForm: React.FC<ClientFormProps> = ({
   initialValues,
   handleSubmit,
+  deleteCart,
 }) => {
+  
   return (
     <div className="mt-4">
       <h5>Cliente del pedido:</h5>
@@ -35,7 +38,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
           onSubmit={handleSubmit}
         >
           {({ errors, touched }) => (
-            <Form >
+            <Form>
               <div className="row mb-3">
                 <div className="col-12 col-md-3">
                   <label htmlFor="nombre" className="col-12 col-form-label">
@@ -52,8 +55,11 @@ const ClientForm: React.FC<ClientFormProps> = ({
                   ) : null}
                 </div>
                 <div className="col-12 col-md-3">
-                  <label htmlFor="identificacion" className="col-12 col-form-label">
-                  Identificación:
+                  <label
+                    htmlFor="identificacion"
+                    className="col-12 col-form-label"
+                  >
+                    Identificación:
                   </label>
                   <Field
                     name="identificacion"
@@ -62,12 +68,14 @@ const ClientForm: React.FC<ClientFormProps> = ({
                     autoComplete="off"
                   />
                   {errors.identificacion && touched.identificacion ? (
-                    <small className="text-danger">{errors.identificacion}</small>
+                    <small className="text-danger">
+                      {errors.identificacion}
+                    </small>
                   ) : null}
                 </div>
                 <div className="col-12 col-md-3">
                   <label htmlFor="email" className="col-12 col-form-label">
-                  Email:
+                    Email:
                   </label>
                   <Field
                     name="email"
@@ -81,7 +89,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
                 </div>
                 <div className="col-12 col-md-3">
                   <label htmlFor="telefono" className="col-12 col-form-label">
-                  Telefono:
+                    Telefono:
                   </label>
                   <Field
                     name="telefono"
@@ -93,11 +101,11 @@ const ClientForm: React.FC<ClientFormProps> = ({
                     <small className="text-danger">{errors.telefono}</small>
                   ) : null}
                 </div>
-              </div>              
+              </div>
               <div className="d-flex justify-content-between mt-3">
                 <button type="submit" className="btn btn-primary">
-                  Guardar
-                </button>
+                  Guardar <i className="fas fa-user"></i>
+                </button>                
               </div>
             </Form>
           )}
@@ -115,5 +123,6 @@ ClientForm.propTypes = {
     email: PropTypes.string.isRequired,
   }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  deleteCart: PropTypes.func.isRequired,
 };
 export default ClientForm;

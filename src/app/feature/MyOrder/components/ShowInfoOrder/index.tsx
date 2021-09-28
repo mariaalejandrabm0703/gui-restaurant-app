@@ -6,16 +6,17 @@ import {
   setCountProduct,
   setProducts,
 } from '../../../../core/redux/actions/cart/ActionsCart';
+import {
+  setConfigOrderAsync,
+  setOrder,
+} from '../../../../core/redux/actions/order/ActionsOrder';
 import { IClient } from 'app/feature/Cart/models/Cart';
 import { IProduct } from 'app/feature/Home/models/Home';
 import { IProductOrder } from '../../../Home/models/Home';
 import { Istate } from 'app/core/redux/modelo/GeneralState';
 import { ManageCardProduct } from 'app/shared/components/cardProduct/cardProduct';
 import { connect } from 'react-redux';
-import {
-  setConfigOrderAsync,
-  setOrder,
-} from '../../../../core/redux/actions/order/ActionsOrder';
+import { useHistory } from 'react-router';
 
 interface ShowInfoOrderProps {
   myOrder: IMyOrder;
@@ -39,6 +40,8 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
   const [productos, setproductos] = useState([
     { id: 0, desc: '', price: 0, img: '', cantidad: 0 },
   ]);
+
+  const history = useHistory();
 
   useEffect(() => {
     const newProducts = [];
@@ -92,6 +95,7 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
         activo: '',
       },
     });
+    history.push('/cart');
   };
 
   const handleCancel = () => {
