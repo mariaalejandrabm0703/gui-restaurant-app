@@ -138,7 +138,7 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
         </div>
       </div>
       <div>
-        <p>Estado: {myOrder.activo === '1' ? 'Activo' : 'Cancelado'}</p>
+        <p className="d-flex">Estado:{myOrder.activo === '1' ? <p className="activo"> Activo</p> : <p className="cancelado">  Cancelado</p>}</p>
         <p>Precio: {currencyFormat(myOrder.precio)} </p>
         <p>Fecha de entrega: {myOrder.fechaEntrega} </p>
       </div>
