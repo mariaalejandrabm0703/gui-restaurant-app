@@ -25,6 +25,21 @@ export interface IProduct {
   img: string;
 }
 
+export interface IFilters{
+  /**
+   * Descripción del producto
+   */
+  description: string,
+  /**
+   * Categoría del producto
+   */
+  category: string,
+  /**
+   * Precio del producto
+   */
+  price: number,
+}
+
 export interface IProductOrderRegistred {
   /**
    * Identificador del producto

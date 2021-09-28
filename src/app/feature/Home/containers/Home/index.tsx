@@ -3,30 +3,30 @@ import * as React from 'react';
 import { IProduct, IProductOrder, IRanking } from '../../models/Home';
 import FindProducts from '../../components/FindProducts/index';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
+import { ManageShowProducts } from '../../components/ShowProducts/index';
 import RankingProducts from '../../components/Ranking/index';
-import ShowProducts from '../../components/ShowProducts/index';
 import ToastError from '../../../../shared/components/ToastError';
-
-
 
 interface HomeProps {
   listProducts: Array<IProduct>;
   listRanking: Array<IRanking>;
-  listProductsCart: Array<IProductOrder>;
+  listProductsFilter: Array<IProduct>;
   isLoading: boolean;
   errorMessage: IErrorToast;
   getAllProducts: () => void;
   getProductsRanking: () => void;
+  setProductFilters: (prods: IProduct[]) => void;
 }
 
 export const Home: React.FC<HomeProps> = ({
   listProducts,
   listRanking,
-  listProductsCart,
+  listProductsFilter,
   isLoading,
   errorMessage,
   getAllProducts,
   getProductsRanking,
+  setProductFilters,
 }) => {
   React.useEffect(() => {
     if (
@@ -35,6 +35,14 @@ export const Home: React.FC<HomeProps> = ({
       errorMessage.message === ''
     ) {
       getAllProducts();
+    } else {
+      if (
+        listProductsFilter &&
+        listProductsFilter.length === 0 &&
+        errorMessage.message === ''
+      ) {
+        setProductFilters(listProducts);
+      }
     }
   }, [listProducts, getAllProducts, errorMessage]);
 
@@ -58,12 +66,12 @@ export const Home: React.FC<HomeProps> = ({
         </div>
         <div className="col-6">
           <p>Elección de los más vendidos:</p>
-          <RankingProducts listRanking={listRanking}/>
+          <RankingProducts listRanking={listRanking} />
         </div>
       </div>
       <div className="row m-3">
         <div className="col-12">
-          <ShowProducts />
+          <ManageShowProducts />
         </div>
       </div>
     </div>
@@ -73,7 +81,7 @@ export const Home: React.FC<HomeProps> = ({
 Home.propTypes = {
   listProducts: PropTypes.array.isRequired,
   listRanking: PropTypes.array.isRequired,
-  listProductsCart: PropTypes.array.isRequired,
+  listProductsFilter: PropTypes.array.isRequired,  
   isLoading: PropTypes.bool.isRequired,
   getAllProducts: PropTypes.func.isRequired,
   getProductsRanking: PropTypes.func.isRequired,
@@ -81,4 +89,5 @@ Home.propTypes = {
     message: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
+  setProductFilters: PropTypes.func.isRequired,
 };
