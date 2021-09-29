@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 describe('Prueba de Pedido', () => {
-  it('is working', () => {
+  it('Cypres funciona', () => {
     expect(true).to.equal(true);
   });
 
