@@ -19,7 +19,7 @@ export const Menu: React.FC<MenuProps> = ({
   getAllProducts,
 }) => {
 
-  const [categorias, setcategorias] = React.useState([
+  const [categorias] = React.useState([
     'Entrada',
     'Ensaladas',
     'Sopas',

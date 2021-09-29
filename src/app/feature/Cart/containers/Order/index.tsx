@@ -105,10 +105,8 @@ export const Cart: React.FC<CartProps> = ({
     const sameProd =
       listProducts && listProducts.filter((prod) => prod.producto === id);
     let quantity: number = 0;
-    if (sameProd && sameProd.length > 0) {
+    if (sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
-    } else {
-      quantity = 0;
     }
 
     // guardar nuevo prods
@@ -137,18 +135,16 @@ export const Cart: React.FC<CartProps> = ({
     let quantity: number = 0;
     if (sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
-    } else {
-      quantity = 0;
-    }
+    } 
 
     // guardar los prods
     let prods;
     if (quantity - 1 === 0 || quantity === 0) {
       prods =
-        listProducts.filter((prod) => prod.producto !== id);
+        listProducts.filter((item) => item.producto !== id);
     } else {
       prods =
-        listProducts.filter((prod) => prod.producto !== id);
+        listProducts.filter((item) => item.producto !== id);
       const prod: IProductOrder = {
         producto: id,
         cantidad: quantity - 1,
