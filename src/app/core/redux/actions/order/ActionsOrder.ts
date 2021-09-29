@@ -17,6 +17,8 @@ import { IErrorToast } from '../../modelo/IStateMain';
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { OrderRepository } from '../../../api/order.repository';
 import { setProductsRanAsync } from '../ranking/ActionsRanking';
+import { toast } from 'react-toastify';
+
 const errorDefault = { message: '', type: '' };
 
 export function defaultState(pedido: IMyOrder): IActionTypesOrder {
@@ -101,6 +103,17 @@ export function searchOrderAsync(id: number) {
     dispacth(isLoading(true));
     await OrderRepository.findOrderById(id)
       .then((response: any) => {
+        if (!response.data[0] && response.data.length === 0) {
+          dispacth(isLoading(false));
+          dispacth(
+            setError({
+              type: 'order',
+              message: 'El pedido no existe.',
+            })
+          );
+          toast.error('No se ha encontrado el pedido #'+id);
+          return;
+        }
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
         return dispacth(setOrder(response.data[0]));

@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import { IMyOrder } from '../../models/MyOrder';
 import React from 'react';
-
+import ToastError from 'app/shared/components/ToastError';
 interface FindOrderProps {
   searchOrderAsync: (id: number) => void;
   myOrder: IMyOrder;
@@ -25,6 +25,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
   };
   return (
     <div className="mt-4">
+      <ToastError />
       <h5>Buscar pedido:</h5>
       <div className="">
         <Formik
