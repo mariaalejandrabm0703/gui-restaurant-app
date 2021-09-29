@@ -113,7 +113,7 @@ export const Cart: React.FC<CartProps> = ({
 
     // guardar nuevo prods
     let prods =
-      listProducts && listProducts.filter((prod) => prod.producto !== id);
+      listProducts && listProducts.filter((item) => item.producto !== id);
     const prod: IProductOrder = {
       producto: id,
       cantidad: quantity + 1,

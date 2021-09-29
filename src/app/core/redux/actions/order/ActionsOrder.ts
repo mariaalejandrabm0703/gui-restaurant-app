@@ -99,7 +99,6 @@ export function setOrderAsync(order: IMyOrderReg, modo: string, id: number) {
 
 export function searchOrderAsync(id: number) {
   return async function (dispacth: any) {
-    const p = Array<IProductOrder>();
     dispacth(isLoading(true));
     await OrderRepository.findOrderById(id)
       .then((response: any) => {
@@ -115,30 +114,12 @@ export function searchOrderAsync(id: number) {
             message: 'Error al cargar el pedido. Por favor, intente nuevamente',
           })
         );
-        return dispacth(
-          setOrder({
-            id: 0,
-            fechaEntrega: '',
-            precio: 0,
-            activo: '',
-            pedidosProductos: [],
-            cliente: {
-              id: 0,
-              nombre: '',
-              identificacion: '',
-              telefono: '',
-              email: '',
-              activo: '',
-            },
-          })
-        );
       });
   };
 }
 
 export function setConfigOrderAsync(id: number, orderEdit: IMyOrderReg) {
   return async function (dispacth: any) {
-    const p = Array<IProductOrder>();
     dispacth(isLoading(true));
     await OrderRepository.editOrderById(id, orderEdit)
       .then((response: any) => {
