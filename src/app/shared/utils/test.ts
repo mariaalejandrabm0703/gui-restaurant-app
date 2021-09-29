@@ -1,5 +1,7 @@
 export const setTextEvent = (identifier: string, text: string) => ({
-  persist: () => {},
+  persist: () => {
+    // This is intentional
+  },
   target: {
     name: identifier,
     value: text,
