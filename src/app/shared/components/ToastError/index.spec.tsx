@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
-
-import { cleanup } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import ToastError from './index';
+import { cleanup } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
-import ToastError from './index';
+
 
 afterEach(cleanup);
 
