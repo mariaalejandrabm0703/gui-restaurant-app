@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IFilters, IProduct, IProductOrder, IRanking } from '../../models/Home';
+import { IFilters, IProduct, IRanking } from '../../models/Home';
 import FindProducts from '../../components/FindProducts/index';
 import { IErrorToast } from 'app/core/redux/modelo/IStateMain';
 import { ManageShowProducts } from '../../components/ShowProducts/index';

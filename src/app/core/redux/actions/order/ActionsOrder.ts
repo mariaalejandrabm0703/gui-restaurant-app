@@ -1,6 +1,5 @@
 import {
   DEFAULT_STATE,
-  DELETE_ORDER,
   IActionTypesOrder,
   SET_ORDER,
 } from '../order/ActionTypesOrder';

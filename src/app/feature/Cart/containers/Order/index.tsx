@@ -103,7 +103,7 @@ export const Cart: React.FC<CartProps> = ({
     if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =
-      listProducts && listProducts.filter((prod) => prod.producto === id);
+      listProducts && listProducts.filter((item) => item.producto === id);
     let quantity: number = 0;
     if (sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;

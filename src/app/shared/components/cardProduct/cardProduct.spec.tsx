@@ -1,15 +1,10 @@
 import '@testing-library/jest-dom';
-
-import { cleanup, render, wait } from '@testing-library/react';
-import { mount, shallow } from 'enzyme';
-import { BrowserRouter } from 'react-router-dom';
 import { CardProduct } from './cardProduct';
 import { IProductOrder } from '../../../feature/Home/models/Home';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { cleanup} from '@testing-library/react';
 import renderer from 'react-test-renderer';
-
-
 
 afterEach(cleanup);
 

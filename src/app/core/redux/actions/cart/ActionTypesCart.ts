@@ -55,14 +55,14 @@ interface IDeleteClientAction {
   payload: IClient;
 }
 
-interface setModoReg {
+interface ISetModoReg {
   type: typeof MODO_REGISTER;
-  payload: String;
+  payload: string;
 }
 
-interface setModoEdit {
+interface ISetModoEdit {
   type: typeof MODO_EDIT;
-  payload: String;
+  payload: string;
 }
 
 export type IActionTypesCart =
@@ -74,5 +74,5 @@ export type IActionTypesCart =
   | ISetClientAction
   | IDeleteClientAction
   | ISetCountAction
-  | setModoReg
-  | setModoEdit;
+  | ISetModoReg
+  | ISetModoEdit;
