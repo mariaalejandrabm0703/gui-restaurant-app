@@ -110,8 +110,8 @@ const ShowInfoOrder: React.FC<ShowInfoOrderProps> = ({
   return (
     <div>
       <div className="container d-flex">
-        <div className="align-items-end m-2">
-          <h5>Información de pedido #{myOrder.id}:</h5>
+        <div className="align-items-end d-flex">
+          <h5>Información de pedido: </h5> <h5 className="color-blue-text">#{myOrder.id}</h5>
         </div>
         <div className="align-items-center">
           <a type="submit" onClick={handleCancel} className="btn btn-link">
