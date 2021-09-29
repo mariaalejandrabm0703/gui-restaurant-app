@@ -176,19 +176,9 @@ export function setClientAsync(id: string, client: IClient) {
           setError({
             type: 'cart',
             message:
-              'Error al cargar el cliente. Por favor, intente nuevamente',
+              'Error al cargar la información del cliente. Por favor, intente nuevamente',
           })
-        );
-        return dispacth(
-          setClient({
-            id: 0,
-            nombre: '',
-            identificacion: '',
-            telefono: '',
-            email: '',
-            activo: '',
-          })
-        );
+        );        
       });
   };
 }
