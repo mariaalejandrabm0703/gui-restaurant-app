@@ -4,6 +4,13 @@ exports[`Compara snapshot del componente CardProduct 1`] = `
 <div
   className="card card-div"
 >
+  <div
+    data-testid="toast-error"
+  >
+    <div
+      className="Toastify"
+    />
+  </div>
   <img
     alt="producto prueba"
     className="img-fluid img-cart"
