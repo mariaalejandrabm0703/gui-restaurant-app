@@ -28,7 +28,7 @@ export const CardProduct: React.FC<CardProductProps> = ({
   listProducts,
   addCountProduct,
   setProducts,
-  showAdd = true,
+  showAdd,
 }) => {
   const addProduct = () => {
     if (addCountProduct) addCountProduct();
