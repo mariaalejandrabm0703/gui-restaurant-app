@@ -100,6 +100,7 @@ export const Cart: React.FC<CartProps> = ({
   };
 
   const addProduct = (id: number, price: number) => {
+    toast.success('Se ha agregar un producto al carrito.', {autoClose:3000});
     if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =

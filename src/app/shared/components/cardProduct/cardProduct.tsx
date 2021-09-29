@@ -6,8 +6,10 @@ import {
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { Istate } from '../../../core/redux/modelo/GeneralState';
 import React from 'react';
+import ToastError from '../ToastError';
 import { connect } from 'react-redux';
 import { currencyFormat } from 'app/shared/utils/utils';
+import { toast } from 'react-toastify';
 
 interface CardProductProps {
   id: number;
@@ -32,6 +34,7 @@ export const CardProduct: React.FC<CardProductProps> = ({
 }) => {
   const addProduct = () => {
     if (addCountProduct) addCountProduct();
+    toast.success('Se ha agregar un producto al carrito.', {autoClose:3000});
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((item) => item.producto === id);
@@ -60,6 +63,7 @@ export const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <div className="card card-div">
+      <ToastError />
       <img src={img} alt={description} className="img-fluid img-cart"></img>
       <div className="card-body d-flex">
         <div className="row">
