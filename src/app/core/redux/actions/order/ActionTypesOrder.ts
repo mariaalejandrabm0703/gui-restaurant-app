@@ -14,12 +14,6 @@ interface ISetOrderAction {
   payload: IMyOrder;
 }
 
-interface IDeleteOrderAction {
-  type: typeof DELETE_ORDER;
-  payload: IMyOrder;
-}
-
 export type IActionTypesOrder =
   | IDefaultState
   | ISetOrderAction
-  | IDeleteOrderAction

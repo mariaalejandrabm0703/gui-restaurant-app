@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Compara snapshot del componente CardProduct 1`] = `
+<div
+  className="card card-div"
+>
+  <img
+    alt="producto prueba"
+    className="img-fluid img-cart"
+    src="https://cdns.iconmonstr.com/wp-content/assets/preview/2019/240/iconmonstr-product-3.png"
+  />
+  <div
+    className="card-body d-flex"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-12"
+      >
+        <p
+          className="card-title"
+        >
+          producto prueba
+        </p>
+        <p
+          className="card-text"
+        >
+          $500.00
+        </p>
+      </div>
+      <div
+        className="col-12"
+      >
+        <div
+          className="btn-cart card-buton"
+        >
+          <a
+            className="btn btn-warning card-buton-item"
+            onClick={[Function]}
+            type="submit"
+          >
+            Agregar 
+            <i
+              className="fas fa-shopping-cart"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

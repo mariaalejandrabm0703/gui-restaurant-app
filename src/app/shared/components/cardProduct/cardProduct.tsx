@@ -20,7 +20,7 @@ interface CardProductProps {
   showAdd: boolean;
 }
 
-const CardProduct: React.FC<CardProductProps> = ({
+export const CardProduct: React.FC<CardProductProps> = ({
   id,
   description,
   price,
@@ -28,7 +28,7 @@ const CardProduct: React.FC<CardProductProps> = ({
   listProducts,
   addCountProduct,
   setProducts,
-  showAdd = true,
+  showAdd,
 }) => {
   const addProduct = () => {
     if (addCountProduct) addCountProduct();
