@@ -65,7 +65,7 @@ const CardProduct: React.FC<CardProductProps> = ({
       <img src={img} alt={description} className="img-fluid img-cart"></img>
       <div className="card-body d-flex">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 card-info">
             <p className="card-title">{description}</p>
             <p className="card-text">{currencyFormat(price)}</p>
           </div>
