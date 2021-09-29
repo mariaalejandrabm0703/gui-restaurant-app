@@ -15,5 +15,4 @@ interface ISetProductsAction {
 
 export type IActionTypesRanking =
   | IDefaultState
-  | IDefaultState
   | ISetProductsAction;

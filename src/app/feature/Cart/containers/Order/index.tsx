@@ -133,9 +133,9 @@ export const Cart: React.FC<CartProps> = ({
     if (subtCountProduct) subtCountProduct();
     // contar mismos prods
     const sameProd =
-      listProducts && listProducts.filter((prod) => prod.producto === id);
+      listProducts.filter((prod) => prod.producto === id);
     let quantity: number = 0;
-    if (sameProd && sameProd.length > 0) {
+    if (sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
     } else {
       quantity = 0;
@@ -145,23 +145,23 @@ export const Cart: React.FC<CartProps> = ({
     let prods;
     if (quantity - 1 === 0 || quantity === 0) {
       prods =
-        listProducts && listProducts.filter((prod) => prod.producto !== id);
+        listProducts.filter((prod) => prod.producto !== id);
     } else {
       prods =
-        listProducts && listProducts.filter((prod) => prod.producto !== id);
+        listProducts.filter((prod) => prod.producto !== id);
       const prod: IProductOrder = {
         producto: id,
         cantidad: quantity - 1,
         precio: price,
       };
-      if (prods && prods.length > 0) {
+      if (prods.length > 0) {
         prods = [...prods, prod];
       } else {
         prods = [prod];
       }
     }
     if (setProducts) {
-      setProducts(prods && prods);
+      setProducts(prods);
     }
   };
 
