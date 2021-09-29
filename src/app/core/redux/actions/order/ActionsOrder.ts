@@ -34,13 +34,6 @@ export function setOrder(pedido: IMyOrder): IActionTypesOrder {
   };
 }
 
-export function deleteOrder(pedido: IMyOrder): IActionTypesOrder {
-  return {
-    type: DELETE_ORDER,
-    payload: pedido,
-  };
-}
-
 export function isLoading(loading: boolean): IActionTypesMain {
   return {
     type: IS_LOADING,

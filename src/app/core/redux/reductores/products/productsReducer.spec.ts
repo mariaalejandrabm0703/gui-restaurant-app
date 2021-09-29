@@ -15,6 +15,7 @@ describe('Reductor de productos', () => {
         const newState = productsReducer(initialState, defaultState(prods));
         expect(newState).toStrictEqual(initialState);
       });
+      
       it('debería retornar establecer todos los productos', () => {
         const initialState: IStateProducts = {
             listProducts: Array<IProduct>(),

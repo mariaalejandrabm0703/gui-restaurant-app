@@ -54,3 +54,12 @@ export const filtersInfo = {
   category: 'Plato principal',
   price: 200,
 };
+
+export const myOrderInfo = {
+  id: 1,
+  fechaEntrega: '0/10/2021',
+  precio: 500,
+  activo: '1',
+  pedidosProductos: [productOrderRegistredInfo],
+  cliente: clientInfo,
+};
