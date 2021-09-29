@@ -56,7 +56,7 @@ export const CardProduct: React.FC<CardProductProps> = ({
       prods = [prod];
     }
     if (setProducts) {
-      setProducts(prods && prods);
+      setProducts(prods);
     }
   };
 

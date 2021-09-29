@@ -125,7 +125,7 @@ export const Cart: React.FC<CartProps> = ({
       prods = [prod];
     }
     if (setProducts) {
-      setProducts(prods && prods);
+      setProducts(prods);
     }
   };
 
