@@ -28,15 +28,18 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
           validationSchema={validationSchema}
           onSubmit={handleSearch}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, setFieldValue }) => (
             <Form>
               <div className="row mb-3">
                 <div className="col-12 col-md-6">
-                  <label htmlFor="description" className="col-12 col-form-label">
+                  <label
+                    htmlFor="description"
+                    className="col-12 col-form-label"
+                  >
                     Descripción:
                   </label>
                   <Field
-                    name="description"          
+                    name="description"
                     className="form-control col-12"
                     placeholder="Pasta"
                     autoComplete="off"
@@ -49,12 +52,19 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                   <label htmlFor="category" className="col-12 col-form-label">
                     Categoría:
                   </label>
-                  <Field
-                    name="category"          
+                  <select
                     className="form-control col-12"
-                    placeholder="Entrada"
-                    autoComplete="off"
-                  />
+                    name="category"
+                    onChange={(e) => setFieldValue('category', e.target.value)}
+                  >
+                    <option value="" label="Sin categoría" />
+                    <option value="Entrada" label="Entrada" />
+                    <option value="Ensaladas" label="Ensaladas" />
+                    <option value="Sopas" label="Sopas" />
+                    <option value="Plato principal" label="Plato principal" />
+                    <option value="Bebidas" label="Bebidas" />
+                    <option value="Postres" label="Postres" />
+                  </select>
                   {errors.category && touched.category ? (
                     <small className="text-danger">{errors.category}</small>
                   ) : null}
@@ -64,7 +74,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                     Precio (max):
                   </label>
                   <Field
-                    name="price"          
+                    name="price"
                     className="form-control col-12"
                     type="number"
                     placeholder="500"
@@ -76,7 +86,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                 </div>
                 <div className="col-12 col-md-3 d-flex align-items-end ">
                   <button type="submit" className="btn btn-warning ml-3">
-                    Buscar  <i className="fas fa-search"></i>
+                    Buscar <i className="fas fa-search"></i>
                   </button>
                 </div>
               </div>
