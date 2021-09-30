@@ -34,7 +34,6 @@ export const CardProduct: React.FC<CardProductProps> = ({
 }) => {
   const addProduct = () => {
     if (addCountProduct) addCountProduct();
-    toast.success('Se ha agregar un producto al carrito.', {autoClose:3000});
     // contar mismos prods
     const sameProd =
       listProducts && listProducts.filter((item) => item.producto === id);
