@@ -28,8 +28,6 @@ jobs:
          run: npm ci
        - name: Run linters
          run: npm run lint
-       - name: Run the test
-         run: npm test
        - name: Sonar
          uses: SonarSource/sonarcloud-github-action@master
          env:        
