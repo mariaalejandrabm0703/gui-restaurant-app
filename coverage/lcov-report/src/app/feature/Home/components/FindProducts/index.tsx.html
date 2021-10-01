@@ -24,7 +24,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -38,14 +38,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -150,7 +150,17 @@
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,6 +208,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -274,15 +294,18 @@ const FindProducts: React.FC&lt;FindProductsProps&gt; = <span class="cstat-no" t
           validationSchema={validationSchema}
           onSubmit={handleSearch}
         &gt;
-          {<span class="fstat-no" title="function not covered" >({</span> errors, touched }) =&gt; (
+          {<span class="fstat-no" title="function not covered" >({</span> errors, touched, setFieldValue }) =&gt; (
 <span class="cstat-no" title="statement not covered" >            &lt;Form&gt;</span>
               &lt;div className="row mb-3"&gt;
                 &lt;div className="col-12 col-md-6"&gt;
-                  &lt;label htmlFor="description" className="col-12 col-form-label"&gt;
+                  &lt;label
+                    htmlFor="description"
+                    className="col-12 col-form-label"
+                  &gt;
                     Descripción:
                   &lt;/label&gt;
                   &lt;Field
-                    name="description"          
+                    name="description"
                     className="form-control col-12"
                     placeholder="Pasta"
                     autoComplete="off"
@@ -295,12 +318,19 @@ const FindProducts: React.FC&lt;FindProductsProps&gt; = <span class="cstat-no" t
                   &lt;label htmlFor="category" className="col-12 col-form-label"&gt;
                     Categoría:
                   &lt;/label&gt;
-                  &lt;Field
-                    name="category"          
+                  &lt;select
                     className="form-control col-12"
-                    placeholder="Entrada"
-                    autoComplete="off"
-                  /&gt;
+                    name="category"
+                    onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >setFieldValue('category', e.target.value)}</span>
+                  &gt;
+                    &lt;option value="" label="Sin categoría" /&gt;
+                    &lt;option value="Entrada" label="Entrada" /&gt;
+                    &lt;option value="Ensaladas" label="Ensaladas" /&gt;
+                    &lt;option value="Sopas" label="Sopas" /&gt;
+                    &lt;option value="Plato principal" label="Plato principal" /&gt;
+                    &lt;option value="Bebidas" label="Bebidas" /&gt;
+                    &lt;option value="Postres" label="Postres" /&gt;
+                  &lt;/select&gt;
                   {errors.category &amp;&amp; touched.category ? (
                     &lt;small className="text-danger"&gt;{errors.category}&lt;/small&gt;
                   ) : null}
@@ -310,7 +340,7 @@ const FindProducts: React.FC&lt;FindProductsProps&gt; = <span class="cstat-no" t
                     Precio (max):
                   &lt;/label&gt;
                   &lt;Field
-                    name="price"          
+                    name="price"
                     className="form-control col-12"
                     type="number"
                     placeholder="500"
@@ -322,7 +352,7 @@ const FindProducts: React.FC&lt;FindProductsProps&gt; = <span class="cstat-no" t
                 &lt;/div&gt;
                 &lt;div className="col-12 col-md-3 d-flex align-items-end "&gt;
                   &lt;button type="submit" className="btn btn-warning ml-3"&gt;
-                    Buscar  &lt;i className="fas fa-search"&gt;&lt;/i&gt;
+                    Buscar &lt;i className="fas fa-search"&gt;&lt;/i&gt;
                   &lt;/button&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
@@ -345,7 +375,7 @@ export default FindProducts;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Sep 29 2021 13:50:47 GMT-0500 (hora estándar de Colombia)
+                at Wed Sep 29 2021 19:42:13 GMT-0500 (hora estándar de Colombia)
             </div>
         </div>
         <script src="..\..\..\..\..\..\prettify.js"></script>

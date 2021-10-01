@@ -24,14 +24,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/66</span>
+                <span class='fraction'>0/65</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/56</span>
+                <span class='fraction'>0/40</span>
             </div>
         
             
@@ -45,7 +45,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/61</span>
+                <span class='fraction'>0/60</span>
             </div>
         
             
@@ -331,10 +331,7 @@
 <a name='L273'></a><a href='#L273'>273</a>
 <a name='L274'></a><a href='#L274'>274</a>
 <a name='L275'></a><a href='#L275'>275</a>
-<a name='L276'></a><a href='#L276'>276</a>
-<a name='L277'></a><a href='#L277'>277</a>
-<a name='L278'></a><a href='#L278'>278</a>
-<a name='L279'></a><a href='#L279'>279</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L276'></a><a href='#L276'>276</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -437,18 +434,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -458,6 +448,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -472,8 +468,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -714,20 +708,19 @@ export const Cart: React.FC&lt;CartProps&gt; = <span class="cstat-no" title="sta
   };
 &nbsp;
   const addProduct = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>d: number, price: number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    toast.success('Se ha agregar un producto al carrito.', {autoClose:3000});</span>
 <span class="cstat-no" title="statement not covered" >    if (addCountProduct) <span class="cstat-no" title="statement not covered" >addCountProduct();</span></span>
     // contar mismos prods
     const sameProd =
-<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto === id)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.producto === id)</span>;</span>
     let quantity: number = <span class="cstat-no" title="statement not covered" >0;</span>
-<span class="cstat-no" title="statement not covered" >    if (sameProd &amp;&amp; sameProd.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >    if (sameProd.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >      quantity = sameProd &amp;&amp; sameProd[0]?.cantidad;</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      quantity = 0;</span>
     }
 &nbsp;
     // guardar nuevo prods
     let prods =
-<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto !== id)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.producto !== id)</span>;</span>
     const prod: IProductOrder = <span class="cstat-no" title="statement not covered" >{</span>
       producto: id,
       cantidad: quantity + 1,
@@ -739,7 +732,7 @@ export const Cart: React.FC&lt;CartProps&gt; = <span class="cstat-no" title="sta
 <span class="cstat-no" title="statement not covered" >      prods = [prod];</span>
     }
 <span class="cstat-no" title="statement not covered" >    if (setProducts) {</span>
-<span class="cstat-no" title="statement not covered" >      setProducts(prods &amp;&amp; prods);</span>
+<span class="cstat-no" title="statement not covered" >      setProducts(prods);</span>
     }
   };
 &nbsp;
@@ -747,35 +740,33 @@ export const Cart: React.FC&lt;CartProps&gt; = <span class="cstat-no" title="sta
 <span class="cstat-no" title="statement not covered" >    if (subtCountProduct) <span class="cstat-no" title="statement not covered" >subtCountProduct();</span></span>
     // contar mismos prods
     const sameProd =
-<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto === id)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto === id)</span>;</span>
     let quantity: number = <span class="cstat-no" title="statement not covered" >0;</span>
-<span class="cstat-no" title="statement not covered" >    if (sameProd &amp;&amp; sameProd.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >    if (sameProd.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >      quantity = sameProd &amp;&amp; sameProd[0]?.cantidad;</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      quantity = 0;</span>
-    }
+    } 
 &nbsp;
     // guardar los prods
     let prods;
 <span class="cstat-no" title="statement not covered" >    if (quantity - 1 === 0 || quantity === 0) {</span>
 <span class="cstat-no" title="statement not covered" >      prods =</span>
-        listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto !== id)</span>;
+        listProducts.filter(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.producto !== id)</span>;
     } else {
 <span class="cstat-no" title="statement not covered" >      prods =</span>
-        listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto !== id)</span>;
+        listProducts.filter(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.producto !== id)</span>;
       const prod: IProductOrder = <span class="cstat-no" title="statement not covered" >{</span>
         producto: id,
         cantidad: quantity - 1,
         precio: price,
       };
-<span class="cstat-no" title="statement not covered" >      if (prods &amp;&amp; prods.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      if (prods.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >        prods = [...prods, prod];</span>
       } else {
 <span class="cstat-no" title="statement not covered" >        prods = [prod];</span>
       }
     }
 <span class="cstat-no" title="statement not covered" >    if (setProducts) {</span>
-<span class="cstat-no" title="statement not covered" >      setProducts(prods &amp;&amp; prods);</span>
+<span class="cstat-no" title="statement not covered" >      setProducts(prods);</span>
     }
   };
 &nbsp;
@@ -897,7 +888,7 @@ export const Cart: React.FC&lt;CartProps&gt; = <span class="cstat-no" title="sta
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Sep 29 2021 13:50:47 GMT-0500 (hora estándar de Colombia)
+                at Wed Sep 29 2021 19:42:13 GMT-0500 (hora estándar de Colombia)
             </div>
         </div>
         <script src="..\..\..\..\..\..\prettify.js"></script>

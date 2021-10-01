@@ -29,9 +29,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.09% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/22</span>
+                <span class='fraction'>2/20</span>
             </div>
         
             
@@ -170,7 +170,11 @@
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,13 +208,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,6 +236,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,8 +296,10 @@ import {
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { Istate } from '../../../core/redux/modelo/GeneralState';
 import React from 'react';
+import ToastError from '../ToastError';
 import { connect } from 'react-redux';
 import { currencyFormat } from 'app/shared/utils/utils';
+import { toast } from 'react-toastify';
 &nbsp;
 interface CardProductProps {
   id: number;
@@ -318,19 +324,18 @@ export const CardProduct: React.FC&lt;CardProductProps&gt; = ({
 }) =&gt; {
   const addProduct = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >    if (addCountProduct) <span class="cstat-no" title="statement not covered" >addCountProduct();</span></span>
+<span class="cstat-no" title="statement not covered" >    toast.success('Se ha agregar un producto al carrito.', {autoClose:3000});</span>
     // contar mismos prods
     const sameProd =
-<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto === id)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.producto === id)</span>;</span>
     let quantity: number = <span class="cstat-no" title="statement not covered" >0;</span>
 <span class="cstat-no" title="statement not covered" >    if (sameProd &amp;&amp; sameProd.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >      quantity = sameProd &amp;&amp; sameProd[0]?.cantidad;</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      quantity = 0;</span>
     }
 &nbsp;
     //guardar nuevo prods
     let prods =
-<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(p</span>rod) =&gt; <span class="cstat-no" title="statement not covered" >prod.producto !== id)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      listProducts &amp;&amp; listProducts.filter(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.producto !== id)</span>;</span>
     const prod: IProductOrder = <span class="cstat-no" title="statement not covered" >{</span>
       producto: id,
       cantidad: quantity + 1,
@@ -342,12 +347,13 @@ export const CardProduct: React.FC&lt;CardProductProps&gt; = ({
 <span class="cstat-no" title="statement not covered" >      prods = [prod];</span>
     }
 <span class="cstat-no" title="statement not covered" >    if (setProducts) {</span>
-<span class="cstat-no" title="statement not covered" >      setProducts(prods &amp;&amp; prods);</span>
+<span class="cstat-no" title="statement not covered" >      setProducts(prods);</span>
     }
   };
 &nbsp;
   return (
     &lt;div className="card card-div"&gt;
+      &lt;ToastError /&gt;
       &lt;img src={img} alt={description} className="img-fluid img-cart"&gt;&lt;/img&gt;
       &lt;div className="card-body d-flex"&gt;
         &lt;div className="row"&gt;
@@ -405,7 +411,7 @@ export const ManageCardProduct = connect(mapStateToProps, {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Sep 29 2021 13:50:48 GMT-0500 (hora estándar de Colombia)
+                at Wed Sep 29 2021 19:42:14 GMT-0500 (hora estándar de Colombia)
             </div>
         </div>
         <script src="..\..\..\..\..\prettify.js"></script>

@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.98% </span>
+                <span class="strong">6.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/43</span>
+                <span class='fraction'>3/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">6.98% </span>
+                <span class="strong">6.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/43</span>
+                <span class='fraction'>3/45</span>
             </div>
         
             
@@ -208,14 +208,8 @@
 <a name='L150'></a><a href='#L150'>150</a>
 <a name='L151'></a><a href='#L151'>151</a>
 <a name='L152'></a><a href='#L152'>152</a>
-<a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a>
-<a name='L160'></a><a href='#L160'>160</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L153'></a><a href='#L153'>153</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,6 +312,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -332,29 +336,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -376,7 +362,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   DEFAULT_STATE,
-  DELETE_ORDER,
   IActionTypesOrder,
   SET_ORDER,
 } from '../order/ActionTypesOrder';
@@ -394,6 +379,8 @@ import { IErrorToast } from '../../modelo/IStateMain';
 import { IProductOrder } from 'app/feature/Home/models/Home';
 import { OrderRepository } from '../../../api/order.repository';
 import { setProductsRanAsync } from '../ranking/ActionsRanking';
+import { toast } from 'react-toastify';
+&nbsp;
 const errorDefault = { message: '', type: '' };
 &nbsp;
 export function defaultState(pedido: IMyOrder): IActionTypesOrder {
@@ -475,10 +462,20 @@ export function <span class="fstat-no" title="function not covered" >setOrderAsy
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >searchOrderAsync(</span>id: number) {
 <span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >as</span>ync function (dispacth: any) {</span>
-    const p = <span class="cstat-no" title="statement not covered" >Array&lt;IProductOrder&gt;();</span>
 <span class="cstat-no" title="statement not covered" >    dispacth(isLoading(true));</span>
 <span class="cstat-no" title="statement not covered" >    await OrderRepository.findOrderById(id)</span>
       .then(<span class="fstat-no" title="function not covered" >(r</span>esponse: any) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (!response.data[0] &amp;&amp; response.data.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >          dispacth(isLoading(false));</span>
+<span class="cstat-no" title="statement not covered" >          dispacth(</span>
+            setError({
+              type: 'order',
+              message: 'El pedido no existe.',
+            })
+          );
+<span class="cstat-no" title="statement not covered" >          toast.error('No se ha encontrado el pedido #'+id);</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
 <span class="cstat-no" title="statement not covered" >        dispacth(isLoading(false));</span>
 <span class="cstat-no" title="statement not covered" >        dispacth(setError(errorDefault));</span>
 <span class="cstat-no" title="statement not covered" >        return dispacth(setOrder(response.data[0]));</span>
@@ -491,30 +488,12 @@ export function <span class="fstat-no" title="function not covered" >searchOrder
             message: 'Error al cargar el pedido. Por favor, intente nuevamente',
           })
         );
-<span class="cstat-no" title="statement not covered" >        return dispacth(</span>
-          setOrder({
-            id: 0,
-            fechaEntrega: '',
-            precio: 0,
-            activo: '',
-            pedidosProductos: [],
-            cliente: {
-              id: 0,
-              nombre: '',
-              identificacion: '',
-              telefono: '',
-              email: '',
-              activo: '',
-            },
-          })
-        );
       });
   };
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >setConfigOrderAsync(</span>id: number, orderEdit: IMyOrderReg) {
 <span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >as</span>ync function (dispacth: any) {</span>
-    const p = <span class="cstat-no" title="statement not covered" >Array&lt;IProductOrder&gt;();</span>
 <span class="cstat-no" title="statement not covered" >    dispacth(isLoading(true));</span>
 <span class="cstat-no" title="statement not covered" >    await OrderRepository.editOrderById(id, orderEdit)</span>
       .then(<span class="fstat-no" title="function not covered" >(r</span>esponse: any) =&gt; {
@@ -540,7 +519,7 @@ export function <span class="fstat-no" title="function not covered" >setConfigOr
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Sep 29 2021 13:50:47 GMT-0500 (hora estándar de Colombia)
+                at Wed Sep 29 2021 19:42:13 GMT-0500 (hora estándar de Colombia)
             </div>
         </div>
         <script src="..\..\..\..\..\..\prettify.js"></script>
