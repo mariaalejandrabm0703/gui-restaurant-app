@@ -13,7 +13,7 @@ export const CartRepository = {
    * Obtiene la información del cliente según la identificacion
    * @returns información del cliente
    */
-  findClient: (id: string) => axios.get(`${baseUrl}/clientes/` + id),
+  findClient: (id: string) => axios.get(`${baseUrl}/clientes/${id}`),
   /**
    * Registrar el cliente
    * @returns id del cliente

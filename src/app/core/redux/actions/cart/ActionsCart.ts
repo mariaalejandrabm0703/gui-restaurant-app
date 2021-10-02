@@ -56,7 +56,7 @@ export function setProductsAsync(id: number) {
         dispacth(setError(errorDefault));
         return dispacth(setProducts(response.data.pedidosProductos));
       })
-      .catch((err) => {
+      .catch(() => {
         dispacth(isLoading(false));
         dispacth(
           setError({
@@ -136,7 +136,7 @@ export function registryClientAsync(client: IClient) {
         };
         return dispacth(setClient(c));
       })
-      .catch((err) => {
+      .catch(() => {
         dispacth(isLoading(false));
         dispacth(
           setError({
@@ -165,20 +165,20 @@ export function setClientAsync(id: string, client: IClient) {
       .then((response: any) => {
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
-        if (response.data[0] && response.data.length > 0) {         
+        if (response.data[0] && response.data.length > 0) {
           return dispacth(setClient(response.data[0]));
         }
         return dispacth(registryClientAsync(client));
       })
-      .catch((err) => {
+      .catch(() => {
         dispacth(isLoading(false));
-        dispacth(
+        return dispacth(
           setError({
             type: 'cart',
             message:
               'Error al cargar la información del cliente. Por favor, intente nuevamente',
           })
-        );        
+        );
       });
   };
 }
