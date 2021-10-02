@@ -25,7 +25,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
   };
   return (
     <div className="mt-4">
-      <ToastError />
+      {/* <ToastError /> */}
       <h5>Buscar pedido:</h5>
       <div className="">
         <Formik

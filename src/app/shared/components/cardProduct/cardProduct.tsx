@@ -63,7 +63,7 @@ export const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <div className="card card-div">
-      <ToastError />
+      {/* <ToastError /> */}
       <img src={img} alt={description} className="img-fluid img-cart"></img>
       <div className="card-body d-flex">
         <div className="row">
