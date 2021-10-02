@@ -43,11 +43,12 @@ export function setProductsRanAsync() {
     dispacth(isLoading(true));
     await RankingRepository.getProductsRanking()
       .then((response: any) => {
+        console.log('getProductsRanking')
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
         return dispacth(setProducts(response.data));
       })
-      .catch((err) => {
+      .catch(() => {
         dispacth(isLoading(false));
         dispacth(
           setError({

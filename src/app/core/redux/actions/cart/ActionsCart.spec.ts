@@ -1,6 +1,5 @@
 import {
   clientInfo,
-  productInfo,
   productOrderInfor,
 } from '../../../../shared/utils/data';
 import {
@@ -58,7 +57,7 @@ describe('Test servicios asincronos ActionsCart', () => {
       setClient(clientInfo),
     ];
 
-    moxios.stubRequest('http://localhost:3001/api/clientes/109049544', {
+    moxios.stubRequest(baseUrl +'/clientes/'+clientInfo.identificacion, {
       status: 201,
       response: [clientInfo],
     });
@@ -83,7 +82,7 @@ describe('Test servicios asincronos ActionsCart', () => {
       }),
     ];
 
-    moxios.stubRequest('http://localhost:3001/api/clientes/109049544', {
+    moxios.stubRequest(baseUrl +'/clientes/'+clientInfo.identificacion, {
       status: 400,
       response: { data: [clientInfo] },
     });
@@ -108,7 +107,7 @@ describe('Test servicios asincronos ActionsCart', () => {
       setClient(clientInfo),
     ];
 
-    moxios.stubRequest('http://localhost:3001/api/clientes/109049544', {
+    moxios.stubRequest(baseUrl +'/clientes/'+clientInfo.identificacion, {
       status: 200,
       response: [],
     });
@@ -185,7 +184,7 @@ describe('Test servicios asincronos ActionsCart', () => {
       setProducts([productOrderInfor]),
     ];
 
-    moxios.stubRequest('http://localhost:3001/api/pedidos/1', {
+    moxios.stubRequest(baseUrl+'/pedidos/1', {
       status: 201,
       response: { pedidosProductos: [productOrderInfor] },
     });
@@ -208,7 +207,7 @@ describe('Test servicios asincronos ActionsCart', () => {
       setProducts([]),
     ];
 
-    moxios.stubRequest('http://localhost:3001/api/pedidos/1', {
+    moxios.stubRequest(baseUrl+'/pedidos/1', {
       status: 400,
       response: { pedidosProductos: [productOrderInfor] },
     });

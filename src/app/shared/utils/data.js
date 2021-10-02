@@ -63,3 +63,11 @@ export const myOrderInfo = {
   pedidosProductos: [productOrderRegistredInfo],
   cliente: clientInfo,
 };
+
+export const myOrderRegInfor = {
+  fechaEntrega: '01/10/2021',
+  precio: 500,
+  activo: '1',
+  productos: [productOrderInfor],
+  cliente: clientInfo.id,
+};

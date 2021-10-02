@@ -60,16 +60,16 @@ export function setOrderAsync(order: IMyOrderReg, modo: string, id: number) {
       return dispacth(setConfigOrderAsync(id, order));
     }
     await OrderRepository.registryOrder(order)
-      .then((response: any) => {
-        dispacth(isLoading(false));
+      .then(async (response: any)  => {
+        dispacth(isLoading(false));      
         dispacth(setError(errorDefault));
         dispacth(setProducts(p));
         dispacth(deleteCountProduct());
         dispacth(deleteClient());
-        dispacth(setProductsRanAsync());
+        await dispacth(setProductsRanAsync());
         return dispacth(setOrder(response.data[0]));
       })
-      .catch((err) => {
+      .catch(() => {
         dispacth(isLoading(false));
         dispacth(
           setError({
