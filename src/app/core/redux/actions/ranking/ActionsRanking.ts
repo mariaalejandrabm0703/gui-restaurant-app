@@ -43,7 +43,7 @@ export function setProductsRanAsync() {
     dispacth(isLoading(true));
     await RankingRepository.getProductsRanking()
       .then((response: any) => {
-        console.log('getProductsRanking')
+        console.log('getProductsRanking');
         dispacth(isLoading(false));
         dispacth(setError(errorDefault));
         return dispacth(setProducts(response.data));

@@ -1,17 +1,3 @@
-/* eslint-disable sort-imports */
-import {
-  clientInfo,
-  myOrderInfo,
-  myOrderRegInfor,
-  productOrderInfor,
-  rankingInfo,
-} from '../../../../shared/utils/data';
-import { baseUrl } from '../../../config/AxiosConfig';
-import configureMockStore from 'redux-mock-store';
-import expect from 'expect';
-import moxios from 'moxios';
-import thunk from 'redux-thunk';
-import { IStateOrder } from '../../modelo/IStateOrder';
 import {
   deleteClient,
   deleteCountProduct,
@@ -25,10 +11,18 @@ import {
   setOrderAsync,
 } from './ActionsOrder';
 import {
-  setProductsRanAsync,
-  setProducts as setProductsRank,
-} from '../ranking/ActionsRanking';
+  myOrderInfo,
+  myOrderRegInfor,
+  rankingInfo,
+} from '../../../../shared/utils/data';
 import { IProductOrder } from '../../../../feature/Home/models/Home';
+import { IStateOrder } from '../../modelo/IStateOrder';
+import { baseUrl } from '../../../config/AxiosConfig';
+import configureMockStore from 'redux-mock-store';
+import expect from 'expect';
+import moxios from 'moxios';
+import { setProducts as setProductsRank } from '../ranking/ActionsRanking';
+import thunk from 'redux-thunk';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
