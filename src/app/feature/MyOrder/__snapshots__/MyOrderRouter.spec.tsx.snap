@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Prueba del App con redux Compara snapshot del App renderizado 1`] = `
+exports[`Prueba componente MyOrderRouter con redux Compara snapshot del MyOrderRouter renderizado 1`] = `
 <ContextProvider
   value={
     Object {
@@ -33,7 +33,7 @@ exports[`Prueba del App con redux Compara snapshot del App renderizado 1`] = `
   }
 >
   <BrowserRouter>
-    <App />
+    <MyOrderRouter />
   </BrowserRouter>
   ,
 </ContextProvider>

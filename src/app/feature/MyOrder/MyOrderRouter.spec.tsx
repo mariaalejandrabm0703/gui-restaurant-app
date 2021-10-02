@@ -1,12 +1,13 @@
 import '@testing-library/jest-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import {
   IFilters,
   IProduct,
   IProductOrder,
   IProductOrderRegistred,
   IRanking,
-} from './feature/Home/models/Home';
-import { IMyClient, IMyOrder } from './feature/MyOrder/models/MyOrder';
+} from '../../feature/Home/models/Home';
+import { IMyClient, IMyOrder } from '../../feature/MyOrder/models/MyOrder';
 import {
   clientInfo,
   filtersInfo,
@@ -15,19 +16,20 @@ import {
   productOrderInfor,
   productOrderRegistredInfo,
   rankingInfo,
-} from './shared/utils/data';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { IClient } from './feature/Cart/models/Cart';
-import { IStateCart } from './core/redux/modelo/IStateCart';
-import { IStateHome } from './core/redux/modelo/IStateHome';
-import { IStateMain } from './core/redux/modelo/IStateMain';
-import { IStateOrder } from './core/redux/modelo/IStateOrder';
-import { IStateProducts } from './core/redux/modelo/IStateProducts';
-import { IStateRanking } from './core/redux/modelo/IStateRanking';
+} from '../../shared/utils/data';
+import { render, screen } from '@testing-library/react';
+import { IClient } from '../../feature/Cart/models/Cart';
+import { IStateCart } from '../../core/redux/modelo/IStateCart';
+import { IStateHome } from '../../core/redux/modelo/IStateHome';
+import { IStateMain } from '../../core/redux/modelo/IStateMain';
+import { IStateOrder } from '../../core/redux/modelo/IStateOrder';
+import { IStateProducts } from '../../core/redux/modelo/IStateProducts';
+import { IStateRanking } from '../../core/redux/modelo/IStateRanking';
+import { MyOrderRouter } from './MyOrderRouter';
 import { Provider } from 'react-redux';
 import React from 'react';
 import configureStore from 'redux-mock-store';
+import { createMemoryHistory } from 'history';
 import { shallow } from 'enzyme';
 
 const mockStore = configureStore([]);
@@ -58,7 +60,7 @@ const cart: IStateCart = {
 
 const main: IStateMain = {
   isLoading: false,
-  errorMessage: { message: '', type: '' }, 
+  errorMessage: { message: '', type: '' },
 };
 
 const newProductRegistred: IProductOrderRegistred = productOrderRegistredInfo;
@@ -76,14 +78,16 @@ const order: IStateOrder = {
   myOrder,
 };
 
-const listProductsHome: IProduct[] =[newProduct];
+const listProductsHome: IProduct[] = [newProduct];
 const filters: IFilters = filtersInfo;
 const home: IStateHome = {
   listProductsHome,
   filters,
 };
 
-describe('Prueba del App con redux', () => {
+const history = createMemoryHistory();
+
+describe('Prueba componente MyOrderRouter con redux', () => {
   let store;
 
   let wrapper;
@@ -100,14 +104,27 @@ describe('Prueba del App con redux', () => {
     wrapper = shallow(
       <Provider store={store}>
         <BrowserRouter>
-        <App />
+          <MyOrderRouter />
         </BrowserRouter>
         ,
       </Provider>
     );
   });
 
-  it('Compara snapshot del App renderizado', () => {
+  it('Compara snapshot del MyOrderRouter renderizado', () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('Lazy componente MyOrderRouter', () => {
+    const { getByText } = render(
+      <Provider store={store}>
+        <Router history={history}>
+          <MyOrderRouter />
+        </Router>
+      </Provider>
+    );
+    expect(getByText(/Cargando página.../i)).toBeInTheDocument();
+  });
+
+  
 });
