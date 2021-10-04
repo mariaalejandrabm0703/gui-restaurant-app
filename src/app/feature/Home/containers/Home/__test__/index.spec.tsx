@@ -17,6 +17,8 @@ import {
   productOrderRegistredInfo,
   rankingInfo,
 } from '../../../../../shared/utils/data';
+import { mount, shallow } from 'enzyme';
+import { render, wait } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import {Home as HomeC} from '../index';
 import { IClient } from '../../../../Cart/models/Cart';
@@ -31,9 +33,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
-import { render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
 
 const mockStore = configureStore([]);
 
@@ -87,13 +87,6 @@ const home: IStateHome = {
   listProductsHome,
   filters,
 };
-
-const myOrderC: IMyOrder = myOrderInfo;
-const isLoading: boolean = true;
-const errorMessage: IErrorToast = { message: '', type: '' };
-const searchOrderAsync = (id: number) => '';
-const setProductsAsync = () => '';
-const listProductsC: Array<IProduct> = [];
 
 describe('Pruebas de container Home', () => {
   let store;
@@ -172,5 +165,60 @@ describe('Pruebas de container Home', () => {
     </Provider>
     );
     expect(getByTestId('div-home')).toContainElement(getByTestId('div-ranking'));
+  });
+
+  it('Debe dar click en el botón buscar producto', async () => {
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+        <HomeC
+          listProducts={[productInfo]}
+          listRanking={listRanking}
+          listProductsFilter={[productInfo]}
+          isLoading={true}
+          errorMessage={ { message: '', type: '' }}
+          getAllProducts={()=> null}
+          getProductsRanking={()=> null}
+          setProductFilters={()=> null}
+        />
+        </BrowserRouter>
+        ,
+      </Provider>
+    );
+
+    const desc = wrapper.find('#description').first();
+    const cate = wrapper.find('#category').first();
+    const prec = wrapper.find('#price').first();
+
+
+    await wait(() => {
+      desc.simulate('change', {
+        target: {
+          name: 'description',
+          value: 'Sopa',
+        },
+      });
+    });
+
+    await wait(() => {
+      cate.simulate('change', {
+        target: {
+          name: 'category',
+          value: 'Sopas',
+        },
+      });
+    });
+
+    await wait(() => {
+      prec.simulate('change', {
+        target: {
+          name: 'price',
+          value: 400,
+        },
+      });
+    });
+
+    const form = wrapper.find('#form-searh-prod').first();
+    form.simulate('submit');
   });
 });

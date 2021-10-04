@@ -29,7 +29,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
           onSubmit={handleSearch}
         >
           {({ errors, touched, setFieldValue }) => (
-            <Form>
+            <Form id="form-searh-prod">
               <div className="row mb-3">
                 <div className="col-12 col-md-6">
                   <label
@@ -39,6 +39,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                     Descripción:
                   </label>
                   <Field
+                  id="description"
                     name="description"
                     className="form-control col-12"
                     placeholder="Pasta"
@@ -53,6 +54,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                     Categoría:
                   </label>
                   <select
+                  id="category"
                     className="form-control col-12"
                     name="category"
                     onChange={(e) => setFieldValue('category', e.target.value)}
@@ -74,6 +76,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                     Precio (max):
                   </label>
                   <Field
+                  id="price"
                     name="price"
                     className="form-control col-12"
                     type="number"
@@ -85,7 +88,7 @@ const FindProducts: React.FC<FindProductsProps> = ({ handleSearch }) => {
                   ) : null}
                 </div>
                 <div className="col-12 col-md-3 d-flex align-items-end ">
-                  <button type="submit" className="btn btn-warning ml-3">
+                  <button id="btn-search-prods" type="submit" className="btn btn-warning ml-3">
                     Buscar <i className="fas fa-search"></i>
                   </button>
                 </div>
