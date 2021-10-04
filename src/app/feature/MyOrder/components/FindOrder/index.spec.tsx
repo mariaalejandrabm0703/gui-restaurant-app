@@ -32,7 +32,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
-import { render } from '@testing-library/react';
+import { render, wait } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
 const mockStore = configureStore([]);
@@ -148,5 +148,35 @@ describe('Pruebas de componente FindOrder', () => {
     expect(getByTestId('form-find-order')).toContainElement(
       getByTestId('form-find-order-id')
     );
+  });
+
+  it('Debe dar click en el botón y ejecutar el handleSumbit', async () => {
+    const search = jest.fn(() => null);
+    const fetchFunction = jest.fn(() => null);
+    console.log(fetchFunction());
+
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <FindOrder searchOrderAsync={() => search} />
+        </BrowserRouter>
+        ,
+      </Provider>
+    );
+
+    const id = wrapper.find('#id').first();
+
+    await wait(() => {
+      id.simulate('change', {
+        target: {
+          name: 'id',
+          value: '1',
+        },
+      });
+    });
+
+    const form = wrapper.find('#form-find-order').first();
+    form.simulate('submit');
+
   });
 });

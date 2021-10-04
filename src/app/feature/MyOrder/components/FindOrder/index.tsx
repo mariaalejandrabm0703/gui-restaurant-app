@@ -20,6 +20,7 @@ const validationSchema = Yup.object().shape<{ id: number }>({
 
 const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync }) => {
   const handleSubmit = (values: { id: number }) => {
+    console.log('click ---')
     searchOrderAsync(values.id);
   };
   return (
@@ -33,7 +34,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync }) => {
           onSubmit={handleSubmit}
         >
           {({ errors, touched }) => (
-            <Form data-testid="form-find-order">
+            <Form id="form-find-order" data-testid="form-find-order">
               <div className="row mb-3">
                 <div className="col-12 col-md-6">
                   <label htmlFor="id" className="col-12 col-form-label">
@@ -41,6 +42,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync }) => {
                   </label>
                   <Field
                     name="id"
+                    id="id"
                     type="number"
                     className="form-control col-12"
                     placeholder="235"
