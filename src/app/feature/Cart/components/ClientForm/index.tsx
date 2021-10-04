@@ -7,7 +7,6 @@ import React from 'react';
 interface ClientFormProps {
   initialValues: IClient;
   handleSubmit: (values: IClient) => void;
-  deleteCart: () => void;
 }
 
 const validationSchema = Yup.object().shape<IClient>({
@@ -25,9 +24,7 @@ const validationSchema = Yup.object().shape<IClient>({
 const ClientForm: React.FC<ClientFormProps> = ({
   initialValues,
   handleSubmit,
-  deleteCart,
 }) => {
-  
   return (
     <div className="mt-4">
       <h5>Cliente del pedido:</h5>
@@ -105,7 +102,7 @@ const ClientForm: React.FC<ClientFormProps> = ({
               <div className="d-flex justify-content-between mt-3">
                 <button type="submit" className="btn btn-warning">
                   Guardar <i className="fas fa-user"></i>
-                </button>                
+                </button>
               </div>
             </Form>
           )}
@@ -123,6 +120,5 @@ ClientForm.propTypes = {
     email: PropTypes.string.isRequired,
   }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  deleteCart: PropTypes.func.isRequired,
 };
 export default ClientForm;
