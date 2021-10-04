@@ -29,6 +29,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 const mockStore = configureStore([]);
 
@@ -109,5 +110,16 @@ describe('Prueba del ManageMyOrder con redux', () => {
 
   it('Compara snapshot del ManageMyOrder renderizado', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+  it('renderiza el componente ManageMyOrder', () => {
+    const { getByTestId } = render(
+      <Provider store={store}>
+      <BrowserRouter>
+      <ManageMyOrder />
+      </BrowserRouter>
+      ,
+    </Provider>
+    );
+    expect(getByTestId('MyOrder')).toContainElement(getByTestId('title-find-order'));
   });
 });

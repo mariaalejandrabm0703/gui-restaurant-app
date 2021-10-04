@@ -26,7 +26,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
   return (
     <div className="mt-4">
       {/* <ToastError /> */}
-      <h5>Buscar pedido:</h5>
+      <h5 data-testid="title-find-order">Buscar pedido:</h5>
       <div className="">
         <Formik
           initialValues={initialValues}

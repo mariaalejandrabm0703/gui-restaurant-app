@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas de container MyOrder Compara snapshot del MyOrderC renderizado 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <BrowserRouter>
+    <MyOrder
+      errorMessage={
+        Object {
+          "message": "",
+          "type": "",
+        }
+      }
+      isLoading={true}
+      listProducts={Array []}
+      myOrder={
+        Object {
+          "activo": "1",
+          "cliente": Object {
+            "activo": "1",
+            "email": "maria@maria.com",
+            "id": 1,
+            "identificacion": "109049544",
+            "nombre": "Maria",
+            "telefono": "3042569874",
+          },
+          "fechaEntrega": "0/10/2021",
+          "id": 1,
+          "pedidosProductos": Array [
+            Object {
+              "activo": "1",
+              "cantidad": 1,
+              "id": 1,
+              "precio": 500,
+              "producto": Object {
+                "activo": "1",
+                "categoria": "Plato principal",
+                "descripcion": "Pastas",
+                "id": 1,
+                "img": "https://cdns.iconmonstr.com/wp-content/assets/preview/2019/240/iconmonstr-product-3.png",
+                "precio": 500,
+              },
+            },
+          ],
+          "precio": 500,
+        }
+      }
+      searchOrderAsync={[Function]}
+      setProductsAsync={[Function]}
+    />
+  </BrowserRouter>
+  ,
+</ContextProvider>
+`;

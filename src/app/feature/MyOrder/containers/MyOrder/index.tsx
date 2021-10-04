@@ -32,7 +32,7 @@ export const MyOrder: React.FC<OrderProps> = ({
   }, []);
 
   return (
-    <div className="container">
+    <div data-testid="MyOrder" className="container">
       <ToastError />
       <h1>Mi pedido</h1>
       <div>
