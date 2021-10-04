@@ -84,15 +84,15 @@ export const Home: React.FC<HomeProps> = ({
   };
 
   return (
-    <div className="container">
+    <div data-testid="div-home" className="container">
       <ToastError />
-      <h1>Home</h1>
+      <h1 data-testid="title-home">Home</h1>
       <div className="row m-3">
         <div className="col-6">
           <h5>Busca tu producto:</h5>
           <FindProducts handleSearch={handleSearch} />
         </div>
-        <div className="col-6">
+        <div data-testid="div-ranking" className="col-6">
           <h5>Elección de los más vendidos:</h5>
           <RankingProducts listRanking={listRanking} />
         </div>

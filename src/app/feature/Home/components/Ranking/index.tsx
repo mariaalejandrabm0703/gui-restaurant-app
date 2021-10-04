@@ -9,7 +9,7 @@ interface RankingProductsProps {
 
 const RankingProducts: React.FC<RankingProductsProps> = ({ listRanking }) => {
   return (
-    <div>
+    <div data-testid="table-ranking">
       <div>
         <table className="table table-striped table-sm">
           <thead className="thead-dark">

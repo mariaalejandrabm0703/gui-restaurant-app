@@ -36,7 +36,7 @@ export const MyOrder: React.FC<OrderProps> = ({
       <ToastError />
       <h1>Mi pedido</h1>
       <div>
-        <FindOrder myOrder={myOrder} searchOrderAsync={searchOrderAsync} />
+        <FindOrder searchOrderAsync={searchOrderAsync} />
       </div>
 
       <div>
