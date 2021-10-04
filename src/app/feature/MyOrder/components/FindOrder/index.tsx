@@ -6,7 +6,6 @@ import React from 'react';
 import ToastError from 'app/shared/components/ToastError';
 interface FindOrderProps {
   searchOrderAsync: (id: number) => void;
-  myOrder: IMyOrder;
 }
 
 const initialValues = {
@@ -19,12 +18,12 @@ const validationSchema = Yup.object().shape<{ id: number }>({
     .required('Se debe ingresar un identificador.'),
 });
 
-const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
+const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync }) => {
   const handleSubmit = (values: { id: number }) => {
     searchOrderAsync(values.id);
   };
   return (
-    <div className="mt-4">
+    <div data-testid="div-find-order" className="mt-4">
       {/* <ToastError /> */}
       <h5 data-testid="title-find-order">Buscar pedido:</h5>
       <div className="">
@@ -34,7 +33,7 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
           onSubmit={handleSubmit}
         >
           {({ errors, touched }) => (
-            <Form>
+            <Form data-testid="form-find-order">
               <div className="row mb-3">
                 <div className="col-12 col-md-6">
                   <label htmlFor="id" className="col-12 col-form-label">
@@ -46,13 +45,19 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
                     className="form-control col-12"
                     placeholder="235"
                     autoComplete="off"
+                    data-testid="form-find-order-id"
                   />
                   {errors.id && touched.id ? (
                     <small className="text-danger">{errors.id}</small>
                   ) : null}
                 </div>
                 <div className="col-12 col-md-3 d-flex align-items-end ">
-                  <button type="submit" className="btn btn-warning ml-3">
+                  <button
+                    data-testid="btn-find-order"
+                    id="btn-find-order"
+                    type="submit"
+                    className="btn btn-warning ml-3"
+                  >
                     <i className="fas fa-search"></i>
                   </button>
                 </div>
@@ -68,21 +73,6 @@ const FindOrder: React.FC<FindOrderProps> = ({ searchOrderAsync, myOrder }) => {
 
 FindOrder.propTypes = {
   searchOrderAsync: PropTypes.func.isRequired,
-  myOrder: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    fechaEntrega: PropTypes.string.isRequired,
-    precio: PropTypes.number.isRequired,
-    activo: PropTypes.string.isRequired,
-    pedidosProductos: PropTypes.array.isRequired,
-    cliente: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      nombre: PropTypes.string.isRequired,
-      identificacion: PropTypes.string.isRequired,
-      telefono: PropTypes.string.isRequired,
-      activo: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default FindOrder;
