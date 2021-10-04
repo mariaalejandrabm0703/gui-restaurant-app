@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prueba componente Cart con redux Compara snapshot del Cart renderizado 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <BrowserRouter>
+    <Cart
+      addCountProduct={[Function]}
+      client={null}
+      deleteClient={[Function]}
+      deleteCountProduct={[Function]}
+      errorMessage={null}
+      isLoading={false}
+      listProductMenu={Array []}
+      listProducts={Array []}
+      modo="registry"
+      myOrder={null}
+      setClientAsync={[Function]}
+      setConfigOrderAsync={[Function]}
+      setModoReg={[Function]}
+      setOrderAsync={[Function]}
+      setProducts={[Function]}
+      subtCountProduct={[Function]}
+    />
+  </BrowserRouter>
+  ,
+</ContextProvider>
+`;

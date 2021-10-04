@@ -46,6 +46,7 @@ const CartProduct: React.FC<CartProductProps> = ({
               src={productCart.img}
               alt={productCart.descripcion}
               className="img-fluid img-cartProd"
+              id="img-product"
             ></img>
           </div>
           <div className="col-sm">
@@ -59,10 +60,10 @@ const CartProduct: React.FC<CartProductProps> = ({
           </div>
           <div className="col-sm">
             <div className="cartProduct-div">
-              <a type="submit" onClick={() =>addProduct(productCart.id, productCart.precio)} className="btn btn-warning separateR10">
+              <a type="submit" id="btn-add" onClick={() =>addProduct(productCart.id, productCart.precio)} className="btn btn-warning separateR10">
                 <i className="fas fa-plus"></i>
               </a>              
-              <a type="submit" onClick={() =>subtProduct(productCart.id, productCart.precio)} className="btn btn-warning">
+              <a type="submit" id="btn-subt" onClick={() =>subtProduct(productCart.id, productCart.precio)} className="btn btn-warning">
                 <i className="fas fa-minus"></i>
               </a>
             </div>

@@ -94,13 +94,12 @@ export const Cart: React.FC<CartProps> = ({
       email: values.email,
       activo: '1',
     };
-    if (c.id === 0) {
-      setClientAsync(values.identificacion, c);
-    }
+
+    setClientAsync(values.identificacion, c);
   };
 
   const addProduct = (id: number, price: number) => {
-    toast.success('Se ha agregar un producto al carrito.', {autoClose:3000});
+    toast.success('Se ha agregar un producto al carrito.', { autoClose: 3000 });
     if (addCountProduct) addCountProduct();
     // contar mismos prods
     const sameProd =
@@ -131,21 +130,18 @@ export const Cart: React.FC<CartProps> = ({
   const subtProduct = (id: number, price: number) => {
     if (subtCountProduct) subtCountProduct();
     // contar mismos prods
-    const sameProd =
-      listProducts.filter((prod) => prod.producto === id);
+    const sameProd = listProducts.filter((prod) => prod.producto === id);
     let quantity: number = 0;
     if (sameProd.length > 0) {
       quantity = sameProd && sameProd[0]?.cantidad;
-    } 
+    }
 
     // guardar los prods
     let prods;
     if (quantity - 1 === 0 || quantity === 0) {
-      prods =
-        listProducts.filter((item) => item.producto !== id);
+      prods = listProducts.filter((item) => item.producto !== id);
     } else {
-      prods =
-        listProducts.filter((item) => item.producto !== id);
+      prods = listProducts.filter((item) => item.producto !== id);
       const prod: IProductOrder = {
         producto: id,
         cantidad: quantity - 1,
@@ -180,6 +176,7 @@ export const Cart: React.FC<CartProps> = ({
             <div style={{ textAlign: 'right' }}>
               <button
                 type="submit"
+                id="btn-vaciar"
                 onClick={deleteCart}
                 className="btn btn-danger"
               >
@@ -192,7 +189,6 @@ export const Cart: React.FC<CartProps> = ({
               <ClientForm
                 initialValues={initialValues}
                 handleSubmit={handleSubmit}
-                deleteCart={deleteCart}
               />
             )}
             <hr></hr>
@@ -218,6 +214,7 @@ export const Cart: React.FC<CartProps> = ({
                 type="submit"
                 onClick={confirmCart}
                 className="btn btn-warning"
+                id="btn-confirm-order"
               >
                 Confirmar compra <i className="fas fa-check-circle"></i>
               </a>

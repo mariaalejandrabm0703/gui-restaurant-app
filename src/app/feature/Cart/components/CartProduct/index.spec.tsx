@@ -5,23 +5,25 @@ import {
   IProductOrder,
   IProductOrderRegistred,
   IRanking,
-} from '../../../Home/models/Home';
-import { IMyClient, IMyOrder } from '../../models/MyOrder';
+} from '../../../../feature/Home/models/Home';
+import {
+  IMyClient,
+  IMyOrder,
+} from '../../../../feature/MyOrder/models/MyOrder';
 import {
   clientInfo,
   filtersInfo,
   myClientInfo,
-  myOrderInfo,
   productInfo,
   productOrderInfor,
   productOrderRegistredInfo,
   rankingInfo,
 } from '../../../../shared/utils/data';
 import { mount, shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import FindOrder from './index';
-import { IClient } from '../../../Cart/models/Cart';
-import { IErrorToast } from '../../../../core/redux/modelo/IStateMain';
+import  CartProduct  from './index';
+import { IClient } from '../../../../feature/Cart/models/Cart';
 import { IStateCart } from '../../../../core/redux/modelo/IStateCart';
 import { IStateHome } from '../../../../core/redux/modelo/IStateHome';
 import { IStateMain } from '../../../../core/redux/modelo/IStateMain';
@@ -30,10 +32,7 @@ import { IStateProducts } from '../../../../core/redux/modelo/IStateProducts';
 import { IStateRanking } from '../../../../core/redux/modelo/IStateRanking';
 import { Provider } from 'react-redux';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
-import { render, wait } from '@testing-library/react';
-import renderer from 'react-test-renderer';
 
 const mockStore = configureStore([]);
 
@@ -50,7 +49,7 @@ const ranking: IStateRanking = {
 };
 
 const count: number = 1;
-const client: IClient = clientInfo;
+const client: IClient = null;
 const modo: string = 'registry';
 const newProductOrder: IProductOrder = productOrderInfor;
 const listProductsCart: IProductOrder[] = [newProductOrder];
@@ -68,7 +67,7 @@ const main: IStateMain = {
 
 const newProductRegistred: IProductOrderRegistred = productOrderRegistredInfo;
 const pedidosProductos: IProductOrderRegistred[] = [newProductRegistred];
-const cliente: IMyClient = myClientInfo;
+const cliente: IMyClient = null;
 const myOrder: IMyOrder = {
   id: 1,
   fechaEntrega: '01/10/2021',
@@ -88,7 +87,14 @@ const home: IStateHome = {
   filters,
 };
 
-describe('Pruebas de componente FindOrder', () => {
+const initialValues = {
+  email: '',
+  identificacion: '',
+  nombre: '',
+  telefono: '',
+};
+
+describe('Prueba componente CartProduct con redux', () => {
   let store;
 
   let wrapper;
@@ -105,76 +111,57 @@ describe('Pruebas de componente FindOrder', () => {
     wrapper = shallow(
       <Provider store={store}>
         <BrowserRouter>
-          <FindOrder searchOrderAsync={() => null} />
+          <CartProduct
+            listProductMenu={[]}
+            productOrder={productOrderInfor}
+            addProduct={() => null}
+            subtProduct={() => null}
+          />
         </BrowserRouter>
         ,
       </Provider>
     );
   });
 
-  it('rederizar el componente FindOrder sin errores', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <FindOrder searchOrderAsync={() => null} />
-        </BrowserRouter>
-        ,
-      </Provider>,
-      div
-    );
-    ReactDOM.unmountComponentAtNode(div);
-  });
-
-  it('Compara snapshot del FindOrder renderizado', () => {
+  it('Compara snapshot del CartProduct renderizado', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renderiza el componente FindOrder y verifica existencia de componentes hijos', () => {
-    const { getByTestId } = render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <FindOrder searchOrderAsync={() => null} />
-        </BrowserRouter>
-        ,
-      </Provider>
-    );
-    expect(getByTestId('div-find-order')).toContainElement(
-      getByTestId('btn-find-order')
-    );
-    expect(getByTestId('form-find-order')).toHaveFormValues({
-      id: 0,
-    });
-    expect(getByTestId('form-find-order')).toContainElement(
-      getByTestId('form-find-order-id')
-    );
-  });
-
-  it('Debe dar click en el botón y ejecutar el handleSumbit', async () => {
-    const search = jest.fn(() => null);
-
+  it('Debe dar click en el botón sumar producto', async () => {
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
-          <FindOrder searchOrderAsync={() => search} />
+          <CartProduct
+            listProductMenu={[]}
+            productOrder={productOrderInfor}
+            addProduct={() => null}
+            subtProduct={() => null}
+          />
         </BrowserRouter>
         ,
       </Provider>
     );
 
-    const id = wrapper.find('#id').first();
+    const form = wrapper.find('#btn-add').first();
+    form.simulate('click');
+  });
 
-    await wait(() => {
-      id.simulate('change', {
-        target: {
-          name: 'id',
-          value: '1',
-        },
-      });
-    });
+  it('Debe dar click en el botón restar producto', async () => {
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <CartProduct
+            listProductMenu={[]}
+            productOrder={productOrderInfor}
+            addProduct={() => null}
+            subtProduct={() => null}
+          />
+        </BrowserRouter>
+        ,
+      </Provider>
+    );
 
-    const form = wrapper.find('#form-find-order').first();
-    form.simulate('submit');
-
+    const form = wrapper.find('#btn-subt').first();
+    form.simulate('click');
   });
 });
