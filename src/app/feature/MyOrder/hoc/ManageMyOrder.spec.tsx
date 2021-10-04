@@ -28,8 +28,8 @@ import {ManageMyOrder} from './ManageMyOrder';
 import { Provider } from 'react-redux';
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
 
 const mockStore = configureStore([]);
 

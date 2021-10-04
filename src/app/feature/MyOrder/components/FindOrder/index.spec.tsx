@@ -18,6 +18,7 @@ import {
   rankingInfo,
 } from '../../../../shared/utils/data';
 import { mount, shallow } from 'enzyme';
+import { render, wait } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import FindOrder from './index';
 import { IClient } from '../../../Cart/models/Cart';
@@ -32,8 +33,6 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
-import { render, wait } from '@testing-library/react';
-import renderer from 'react-test-renderer';
 
 const mockStore = configureStore([]);
 

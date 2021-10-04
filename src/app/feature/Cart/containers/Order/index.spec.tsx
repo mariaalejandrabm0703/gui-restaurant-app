@@ -19,6 +19,7 @@ import {
   productOrderRegistredInfo,
   rankingInfo,
 } from '../../../../shared/utils/data';
+import { mount, shallow } from 'enzyme';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Cart } from './index';
@@ -32,7 +33,6 @@ import { IStateRanking } from '../../../../core/redux/modelo/IStateRanking';
 import { Provider } from 'react-redux';
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import { mount, shallow } from 'enzyme';
 
 const mockStore = configureStore([]);
 

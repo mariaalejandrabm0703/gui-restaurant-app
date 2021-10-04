@@ -10,8 +10,8 @@ import { baseUrl } from '../../../config/AxiosConfig';
 import configureMockStore from 'redux-mock-store';
 import expect from 'expect';
 import moxios from 'moxios';
-import thunk from 'redux-thunk';
 import { productInfo } from '../../../../shared/utils/data';
+import thunk from 'redux-thunk';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
